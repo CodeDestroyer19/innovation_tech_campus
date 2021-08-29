@@ -168,7 +168,7 @@ const rows5 = [
   createData("EXCEL", "R 2,000", "1 MONTH"),
   createData("OUTLOOK", "R 2,000", "1 MONTH"),
   createData(
-    "COMPUTER FAULT DIAGNOSTICS,MAINTENANCE, SERVICING & REPAIR",
+    "COMPUTER FAULT DIAGNOSTICS, MAINTENANCE, SERVICING & REPAIR",
     "R 9,000",
     "3 MONTH"
   ),

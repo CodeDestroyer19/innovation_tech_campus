@@ -17,15 +17,42 @@ import Datetime from "react-datetime";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+import Multiselect from "multiselect-react-dropdown";
 
 import styles from "styles/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
 import styles2 from "styles/jss/nextjs-material-kit/pages/componentsSections/basicsStyle.js";
+import {
+  calculateMatric,
+  rows,
+  rows3,
+  rows4,
+  rows5,
+  rows6,
+} from "../../utils/SiteData/courses";
 
 const useStyles = makeStyles(styles);
 const useStyles2 = makeStyles(styles2);
 
-const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
+const Options = ({
+  step,
+  ID,
+  handleTYPE,
+  classes,
+  setStep,
+  programme,
+  handleProgrammeTYPE,
+}) => {
   const [selectedEnabled, setSelectedEnabled] = React.useState("b");
+  const [subjectState, setSubjectState] = React.useState([]);
+  const [valueOfCourse, setValueOfCourse] = React.useState(0);
+  const [duration, setDuration] = React.useState("");
+
+  const handleStateChange = e => {
+    setSubjectState(e);
+    setValueOfCourse(calculateMatric(subjectState.length));
+    if (subjectState.length > 0) setDuration(subjectState[0].durationOf);
+    if (subjectState.length == 0) setDuration("");
+  };
 
   switch (step) {
     case 1:
@@ -110,196 +137,86 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
                 </GridItem>
 
                 <GridItem xs={12} md={6}>
-                  <div className={classes.title}>
-                    <h6>Marital Status</h6>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <FormControlLabel
-                      control={
-                        <Radio
-                          checked={selectedEnabled === "a"}
-                          onChange={() => setSelectedEnabled("a")}
-                          value="a"
-                          name="radio button enabled"
-                          aria-label="A"
-                          icon={
-                            <FiberManualRecord
-                              className={classes.radioUnchecked}
-                            />
-                          }
-                          checkedIcon={
-                            <FiberManualRecord
-                              className={classes.radioChecked}
-                            />
-                          }
-                          classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot,
-                          }}
-                        />
-                      }
-                      classes={{
-                        label: classes.label,
-                        root: classes.labelRoot,
-                      }}
-                      label="Married"
-                    />
-                  </div>
-                  <div
-                    className={
-                      classes.checkboxAndRadio +
-                      " " +
-                      classes.checkboxAndRadioHorizontal
-                    }
-                  >
-                    <FormControlLabel
-                      control={
-                        <Radio
-                          checked={selectedEnabled === "b"}
-                          onChange={() => setSelectedEnabled("b")}
-                          value="b"
-                          name="radio button enabled"
-                          aria-label="B"
-                          icon={
-                            <FiberManualRecord
-                              className={classes.radioUnchecked}
-                            />
-                          }
-                          checkedIcon={
-                            <FiberManualRecord
-                              className={classes.radioChecked}
-                            />
-                          }
-                          classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot,
-                          }}
-                        />
-                      }
-                      classes={{
-                        label: classes.label,
-                        root: classes.labelRoot,
-                      }}
-                      label="Not Married"
-                    />
-                  </div>
+                  <Multiselect
+                    placeholder="Marital Status"
+                    options={["Single", "Married"]}
+                    isObject={false}
+                    singleSelect={true}
+                    style={{
+                      searchBox: {
+                        border: "none",
+                        fontSize: "10px",
+                        minHeight: "50px",
+                        borderBottom: "2px solid #eee",
+                      },
+                      multiselectContainer: {
+                        marginTop: "auto",
+                        marginBottom: "17px",
+                      },
+                    }}
+                  />
                 </GridItem>
 
                 <GridItem xs={12} md={6}>
-                  <div className={classes.title}>
-                    <h6>Gender</h6>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <FormControlLabel
-                      control={
-                        <Radio
-                          checked={selectedEnabled === "a"}
-                          onChange={() => setSelectedEnabled("a")}
-                          value="a"
-                          name="radio button enabled"
-                          aria-label="A"
-                          icon={
-                            <FiberManualRecord
-                              className={classes.radioUnchecked}
-                            />
-                          }
-                          checkedIcon={
-                            <FiberManualRecord
-                              className={classes.radioChecked}
-                            />
-                          }
-                          classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot,
-                          }}
-                        />
-                      }
-                      classes={{
-                        label: classes.label,
-                        root: classes.labelRoot,
-                      }}
-                      label="Male"
-                    />
-                  </div>
-                  <div
-                    className={
-                      classes.checkboxAndRadio +
-                      " " +
-                      classes.checkboxAndRadioHorizontal
-                    }
-                  >
-                    <FormControlLabel
-                      control={
-                        <Radio
-                          checked={selectedEnabled === "b"}
-                          onChange={() => setSelectedEnabled("b")}
-                          value="b"
-                          name="radio button enabled"
-                          aria-label="B"
-                          icon={
-                            <FiberManualRecord
-                              className={classes.radioUnchecked}
-                            />
-                          }
-                          checkedIcon={
-                            <FiberManualRecord
-                              className={classes.radioChecked}
-                            />
-                          }
-                          classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot,
-                          }}
-                        />
-                      }
-                      classes={{
-                        label: classes.label,
-                        root: classes.labelRoot,
-                      }}
-                      label="Female"
-                    />
-                  </div>
+                  <Multiselect
+                    placeholder="Gender"
+                    options={["Male", "Female"]}
+                    isObject={false}
+                    singleSelect={true}
+                    style={{
+                      searchBox: {
+                        border: "none",
+                        fontSize: "10px",
+                        minHeight: "50px",
+                        borderBottom: "2px solid #eee",
+                      },
+                      multiselectContainer: {
+                        marginTop: "auto",
+                        marginBottom: "17px",
+                      },
+                    }}
+                  />
                 </GridItem>
                 {ID === "ID" && (
                   <GridItem xs={12} md={6}>
-                    <CustomDropdown
-                      buttonText="Home Language Code:"
-                      hoverColor="info"
-                      dropdownHeader="Codes"
-                      buttonProps={{
-                        color: "info",
-                        fullWidth: true,
+                    <Multiselect
+                      placeholder="Home Language Code"
+                      options={["Pending", "Pending"]}
+                      isObject={false}
+                      singleSelect={true}
+                      style={{
+                        searchBox: {
+                          border: "none",
+                          fontSize: "10px",
+                          minHeight: "50px",
+                          borderBottom: "2px solid #eee",
+                        },
+                        multiselectContainer: {
+                          marginTop: "auto",
+                          marginBottom: "17px",
+                        },
                       }}
-                      dropdownList={[
-                        "Action",
-                        "Another action",
-                        "Something else here",
-                        { divider: true },
-                        "Separated link",
-                        { divider: true },
-                        "One more separated link",
-                      ]}
                     />
                   </GridItem>
                 )}
                 <GridItem xs={12} md={6}>
-                  <CustomDropdown
-                    buttonText="Learner Title:"
-                    hoverColor="black"
-                    dropdownHeader="Titles"
-                    buttonProps={{
-                      color: "black",
-                      fullWidth: true,
+                  <Multiselect
+                    placeholder="Learner Title"
+                    options={["Single", "Married"]}
+                    isObject={false}
+                    singleSelect={true}
+                    style={{
+                      searchBox: {
+                        border: "none",
+                        fontSize: "10px",
+                        minHeight: "50px",
+                        borderBottom: "2px solid #eee",
+                      },
+                      multiselectContainer: {
+                        marginTop: "auto",
+                        marginBottom: "17px",
+                      },
                     }}
-                    dropdownList={[
-                      "Action",
-                      "Another action",
-                      "Something else here",
-                      { divider: true },
-                      "Separated link",
-                      { divider: true },
-                      "One more separated link",
-                    ]}
                   />
                 </GridItem>
                 <GridItem xs={12} md={6}>
@@ -418,23 +335,23 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
                   />
                 </GridItem>
                 <GridItem xs={12} md={6}>
-                  <CustomDropdown
-                    buttonText="Province Code:"
-                    hoverColor="black"
-                    dropdownHeader="Titles"
-                    buttonProps={{
-                      color: "rose",
-                      fullWidth: true,
+                  <Multiselect
+                    placeholder="Province Code"
+                    options={["Single", "Married"]}
+                    isObject={false}
+                    singleSelect={true}
+                    style={{
+                      searchBox: {
+                        border: "none",
+                        fontSize: "10px",
+                        minHeight: "50px",
+                        borderBottom: "2px solid #eee",
+                      },
+                      multiselectContainer: {
+                        marginTop: "auto",
+                        marginBottom: "17px",
+                      },
                     }}
-                    dropdownList={[
-                      "Action",
-                      "Another action",
-                      "Something else here",
-                      { divider: true },
-                      "Separated link",
-                      { divider: true },
-                      "One more separated link",
-                    ]}
                   />
                 </GridItem>
                 <GridItem xs={12} md={6}>
@@ -509,7 +426,7 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
           </GridItem>
           <GridItem xs={12} md={6}>
             <CustomInput
-              labelText="Contact Details"
+              labelText="Contact Number"
               id="pass"
               formControlProps={{
                 fullWidth: true,
@@ -527,7 +444,7 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
                 fullWidth: true,
               }}
               inputProps={{
-                type: "number",
+                type: "text",
               }}
             />
           </GridItem>
@@ -539,7 +456,8 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
                 fullWidth: true,
               }}
               inputProps={{
-                type: "number",
+                multiline: true,
+                rows: 5,
               }}
             />
           </GridItem>
@@ -570,90 +488,227 @@ const Options = ({ step, ID, handleTYPE, classes, setStep }) => {
           <GridItem xs={12}>
             <h5>3. PROGRAMME DETAILS</h5>
           </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Programme Name "
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
+          <GridItem xs={12}>
+            <GridContainer align="center">
+              <GridItem xs={12} sm={4}>
+                <Button
+                  fullWidth
+                  color="rose"
+                  onClick={() => {
+                    handleProgrammeTYPE("Matic Re-write");
+                  }}
+                >
+                  Matic Re-write
+                </Button>
+              </GridItem>
+              <GridItem xs={12} sm={4}>
+                <Button
+                  fullWidth
+                  color="rose"
+                  onClick={() => {
+                    handleProgrammeTYPE("Nated Programmes");
+                  }}
+                >
+                  Nated Programmes
+                </Button>
+              </GridItem>
+              <GridItem xs={12} sm={4}>
+                <Button
+                  fullWidth
+                  color="rose"
+                  onClick={() => {
+                    handleProgrammeTYPE("Semi-Skills");
+                  }}
+                >
+                  Semi-Skills
+                </Button>
+              </GridItem>
+              <GridItem xs={12} sm={4}>
+                <Button
+                  fullWidth
+                  color="rose"
+                  onClick={() => {
+                    handleProgrammeTYPE("Short Programmes");
+                  }}
+                >
+                  Short Programmes
+                </Button>
+              </GridItem>
+              <GridItem xs={12} sm={4}>
+                <Button
+                  fullWidth
+                  color="rose"
+                  onClick={() => {
+                    handleProgrammeTYPE("Computers");
+                  }}
+                >
+                  Computers
+                </Button>
+              </GridItem>
+            </GridContainer>
           </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="SAQA I.D:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Credits:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Duration:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Full Time:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Part Time:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} md={6}>
-            <CustomInput
-              labelText="Evening:"
-              id="pass"
-              formControlProps={{
-                fullWidth: true,
-              }}
-              inputProps={{
-                type: "number",
-              }}
-            />
-          </GridItem>
+          {programme && (
+            <>
+              <GridItem xs={12} md={6}>
+                <div style={{ width: "100%", height: "100%", display: "flex" }}>
+                  <Multiselect
+                    displayValue="name"
+                    options={
+                      programme === "Matic Re-write"
+                        ? rows6
+                        : programme === "Nated Programmes"
+                        ? rows
+                        : programme === "Semi-Skills"
+                        ? rows4
+                        : programme === "Short Programmes"
+                        ? rows3
+                        : programme === "Computers" && rows5
+                    }
+                    placeholder={
+                      programme !== "Matic Re-write"
+                        ? "Programme Name"
+                        : "Subjects"
+                    }
+                    isMulti={
+                      programme === "Matic Re-write" ||
+                      programme === "Nated Programmes"
+                        ? true
+                        : false
+                    }
+                    selectionLimit={
+                      programme === "Matic Re-write"
+                        ? 6
+                        : programme === "Nated Programmes"
+                        ? 4
+                        : 1
+                    }
+                    closeOnSelect={false}
+                    style={{
+                      searchBox: {
+                        border: "none",
+                        fontSize: "10px",
+                        minHeight: "50px",
+                        borderBottom: "2px solid #eee",
+                      },
+                      multiselectContainer: {
+                        marginTop: "auto",
+                        marginBottom: "17px",
+                      },
+                    }}
+                    showCheckbox={true}
+                    onSelect={handleStateChange}
+                    onRemove={handleStateChange}
+                  />
+                </div>
+              </GridItem>
+              {programme !== "Matic Re-write" ? (
+                <>
+                  {programme === "Nated Programmes" && (
+                    <>
+                      <GridItem xs={12} md={6}>
+                        <CustomInput
+                          labelText="SAQA I.D:"
+                          id="pass"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          inputProps={{
+                            type: "number",
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem xs={12} md={6}>
+                        <CustomInput
+                          labelText="Credits:"
+                          id="pass"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          inputProps={{
+                            type: "number",
+                          }}
+                        />
+                      </GridItem>
+                    </>
+                  )}
+                  <GridItem xs={12} md={6}>
+                    {duration && (
+                      <CustomInput
+                        labelText="Duration:"
+                        id="pass"
+                        value={duration}
+                        formControlProps={{
+                          fullWidth: true,
+                          value: duration,
+                        }}
+                        inputProps={{
+                          type: "text",
+                          value: duration,
+                        }}
+                      />
+                    )}
+                  </GridItem>
+                </>
+              ) : (
+                <GridItem xs={12} md={6}>
+                  Cost: R{valueOfCourse}{" "}
+                  {valueOfCourse !== 0 && "+ REGISTRAION FEE (First month)"}
+                  <br />
+                  {valueOfCourse !== 0 && `${valueOfCourse} Per Month`}
+                </GridItem>
+              )}
+              <GridItem xs={12} md={6}>
+                <Multiselect
+                  placeholder="Attendence"
+                  options={["Part Time", "Full Time"]}
+                  isObject={false}
+                  singleSelect={true}
+                  style={{
+                    searchBox: {
+                      border: "none",
+                      fontSize: "10px",
+                      minHeight: "50px",
+                      borderBottom: "2px solid #eee",
+                    },
+                    multiselectContainer: {
+                      marginTop: "auto",
+                      marginBottom: "17px",
+                    },
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12} md={6}>
+                <Multiselect
+                  placeholder="Evening Lessions"
+                  options={["Yes", "No"]}
+                  isObject={false}
+                  singleSelect={true}
+                  style={{
+                    searchBox: {
+                      border: "none",
+                      fontSize: "10px",
+                      minHeight: "50px",
+                      borderBottom: "2px solid #eee",
+                    },
+                    multiselectContainer: {
+                      marginTop: "auto",
+                      marginBottom: "17px",
+                    },
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12}>
+                <Button
+                  color="rose"
+                  onClick={() => {
+                    setStep(prev => prev - 1);
+                  }}
+                >
+                  Back
+                </Button>
+              </GridItem>
+            </>
+          )}
         </GridContainer>
       );
   }
@@ -663,10 +718,14 @@ export default function SectionLogin() {
   const classes = useStyles();
   const classes2 = useStyles2();
   const [ID, setID] = React.useState("");
+  const [programme, setProgramme] = React.useState("");
   const [step, setStep] = React.useState(1);
 
   const handleTYPE = typeID => {
     setID(typeID);
+  };
+  const handleProgrammeTYPE = typeID => {
+    setProgramme(typeID);
   };
 
   return (
@@ -687,11 +746,13 @@ export default function SectionLogin() {
                     handleTYPE={handleTYPE}
                     classes={classes2}
                     setStep={setStep}
+                    programme={programme}
+                    handleProgrammeTYPE={handleProgrammeTYPE}
                   />
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
                   {step === 3 && (
-                    <Button simple color="primary" size="lg">
+                    <Button color="info" size="lg">
                       Get started
                     </Button>
                   )}
