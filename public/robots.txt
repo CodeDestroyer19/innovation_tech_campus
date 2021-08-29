@@ -1,11 +1,6 @@
-Sitemap: https://innovationtechnologycampus.com/api/sitemap.xml
+Sitemap: https://itc.co.za/api/sitemap.xml
 
 User-agent: *
 Allow: /*
 
-Disallow: /api/Ads*
-Disallow: /api/Liked*
-Disallow: /api/messages*
-Disallow: /api/prices*
-Disallow: /api/users*
-Disallow: /Account?userType=viewer&origin=/Blogs*
+Disallow: /api/*

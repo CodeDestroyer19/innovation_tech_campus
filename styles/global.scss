@@ -1,0 +1,42 @@
+::-webkit-scrollbar:horizontal,
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-track {
+  background: #fcfcfc;
+}
+
+::-webkit-scrollbar-thumb:horizontal,
+::-webkit-scrollbar-thumb {
+  background: #0ce3ff;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 1000px) {
+  #logoName {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  #logoNameSmall {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  #MainBody {
+    margin: -60px auto auto auto !important;
+    width: 95% !important;
+  }
+
+  #mapLoc {
+    min-height: 350px !important;
+    width: 100% !important;
+  }
+}
+
+#postal {
+  margin-top: auto !important;
+}
