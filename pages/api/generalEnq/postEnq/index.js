@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../../../utils/mongoDB/mongodb";
+import { connectToDatabase } from "../../../../utils/mongoDB/mongodb";
 
 const PostEnq = async (req, res) => {
   const { db } = await connectToDatabase();
