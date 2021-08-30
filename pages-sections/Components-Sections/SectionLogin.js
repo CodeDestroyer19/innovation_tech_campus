@@ -11,16 +11,12 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import FormControl from "@material-ui/core/FormControl";
 import Datetime from "react-datetime";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import Multiselect from "multiselect-react-dropdown";
 
 import styles from "styles/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
-import styles2 from "styles/jss/nextjs-material-kit/pages/componentsSections/basicsStyle.js";
+
 import {
   calculateMatric,
   rows,
@@ -31,27 +27,26 @@ import {
 } from "../../utils/SiteData/courses";
 
 const useStyles = makeStyles(styles);
-const useStyles2 = makeStyles(styles2);
 
 const Options = ({
   step,
-  ID,
-  handleTYPE,
-  classes,
   setStep,
+  ID,
+  setID,
   programme,
-  handleProgrammeTYPE,
+  setProgramme,
+  valueOfCourse,
+  setValueOfCourse,
+  formState,
+  setFormState,
 }) => {
-  const [selectedEnabled, setSelectedEnabled] = React.useState("b");
-  const [subjectState, setSubjectState] = React.useState([]);
-  const [valueOfCourse, setValueOfCourse] = React.useState(0);
-  const [duration, setDuration] = React.useState("");
+  console.log(formState);
 
-  const handleStateChange = e => {
-    setSubjectState(e);
-    setValueOfCourse(calculateMatric(subjectState.length));
-    if (subjectState.length > 0) setDuration(subjectState[0].durationOf);
-    if (subjectState.length == 0) setDuration("");
+  const handleTYPE = typeID => {
+    setID(typeID);
+  };
+  const handleProgrammeTYPE = typeID => {
+    setProgramme(typeID);
   };
 
   switch (step) {
@@ -59,18 +54,6 @@ const Options = ({
       return (
         <>
           <h5>
-            <small>
-              *This form has been designed according to SAQA specifications,
-              refer to look up table for codes
-            </small>
-            <br />
-            <small>
-              **Please note: A copy of your ID or Driver’s License must
-              accompany this registration
-            </small>
-            <br />
-            <small>***Attach List of Unit Standards for Skills Programs</small>
-            <br />
             <small>
               *This form has been designed according to SAQA specifications,
               refer to look up table for codes{" "}
@@ -88,8 +71,12 @@ const Options = ({
               <h5>1. LEARNER DETAILS</h5>
             </GridItem>
             <GridItem xs={12}>
-              <Button onClick={() => handleTYPE("ID")}>S.A ID</Button>
-              <Button onClick={() => handleTYPE("PassPort")}>PassPort</Button>
+              <Button onClick={() => handleTYPE("ID")} color="rose">
+                S.A ID
+              </Button>
+              <Button onClick={() => handleTYPE("PassPort")} color="rose">
+                PassPort
+              </Button>
             </GridItem>
             {ID === "ID" && (
               <GridItem xs={12} md={6}>
@@ -101,6 +88,11 @@ const Options = ({
                   }}
                   inputProps={{
                     type: "number",
+                    onChange: e =>
+                      setFormState({
+                        ...formState,
+                        IDNumber: e.target.value,
+                      }),
                   }}
                 />
               </GridItem>
@@ -116,6 +108,11 @@ const Options = ({
                   }}
                   inputProps={{
                     type: "text",
+                    onChange: e =>
+                      setFormState({
+                        ...formState,
+                        PassportNumber: e.target.value,
+                      }),
                   }}
                 />
               </GridItem>
@@ -126,12 +123,17 @@ const Options = ({
                   <FormControl fullWidth>
                     <br />
                     <Datetime
-                      id="email"
                       dateFormat="YYYY-MM-DD"
                       timeFormat={false}
                       inputProps={{
                         placeholder: "Learner Birth Date:  Here",
                       }}
+                      onChange={e =>
+                        setFormState({
+                          ...formState,
+                          BirthDate: `${e.date()}/${e.month() + 1}/${e.year()}`,
+                        })
+                      }
                     />
                   </FormControl>
                 </GridItem>
@@ -142,6 +144,9 @@ const Options = ({
                     options={["Single", "Married"]}
                     isObject={false}
                     singleSelect={true}
+                    onSelect={e =>
+                      setFormState({ ...formState, MaritalStatus: e[0] })
+                    }
                     style={{
                       searchBox: {
                         border: "none",
@@ -163,6 +168,7 @@ const Options = ({
                     options={["Male", "Female"]}
                     isObject={false}
                     singleSelect={true}
+                    onSelect={e => setFormState({ ...formState, Gender: e[0] })}
                     style={{
                       searchBox: {
                         border: "none",
@@ -184,6 +190,9 @@ const Options = ({
                       options={["Pending", "Pending"]}
                       isObject={false}
                       singleSelect={true}
+                      onSelect={e =>
+                        setFormState({ ...formState, LanguageCode: e[0] })
+                      }
                       style={{
                         searchBox: {
                           border: "none",
@@ -205,6 +214,9 @@ const Options = ({
                     options={["Single", "Married"]}
                     isObject={false}
                     singleSelect={true}
+                    onSelect={e =>
+                      setFormState({ ...formState, LearnerTitle: e[0] })
+                    }
                     style={{
                       searchBox: {
                         border: "none",
@@ -228,6 +240,11 @@ const Options = ({
                     }}
                     inputProps={{
                       type: "text",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          DisabilityStatusCode: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -240,7 +257,12 @@ const Options = ({
                       fullWidth: true,
                     }}
                     inputProps={{
-                      type: "number",
+                      type: "text",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          FirstName: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -252,7 +274,12 @@ const Options = ({
                       fullWidth: true,
                     }}
                     inputProps={{
-                      type: "number",
+                      type: "text",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          OtherNames: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -269,6 +296,11 @@ const Options = ({
                     inputProps={{
                       multiline: true,
                       rows: 5,
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          LearnerHomeAddress: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -277,7 +309,7 @@ const Options = ({
                     style={{ width: "100%", height: "100%", display: "flex" }}
                   >
                     <CustomInput
-                      labelText="Postal Code:"
+                      labelText="Home Postal Code:"
                       id="postal"
                       formControlProps={{
                         fullWidth: true,
@@ -285,6 +317,11 @@ const Options = ({
                       }}
                       inputProps={{
                         type: "number",
+                        onChange: e =>
+                          setFormState({
+                            ...formState,
+                            HomePostalCode: e.target.value,
+                          }),
                       }}
                     />
                   </div>
@@ -302,6 +339,11 @@ const Options = ({
                     inputProps={{
                       multiline: true,
                       rows: 5,
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          LearnerPostalAddress: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -318,6 +360,11 @@ const Options = ({
                       }}
                       inputProps={{
                         type: "number",
+                        onChange: e =>
+                          setFormState({
+                            ...formState,
+                            PostalCode: e.target.value,
+                          }),
                       }}
                     />
                   </div>
@@ -331,6 +378,11 @@ const Options = ({
                     }}
                     inputProps={{
                       type: "number",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          PhoneNumber: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -340,6 +392,9 @@ const Options = ({
                     options={["Single", "Married"]}
                     isObject={false}
                     singleSelect={true}
+                    onSelect={e =>
+                      setFormState({ ...formState, ProvinceCode: e[0] })
+                    }
                     style={{
                       searchBox: {
                         border: "none",
@@ -363,6 +418,11 @@ const Options = ({
                     }}
                     inputProps={{
                       type: "number",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          CellNumber: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -374,7 +434,12 @@ const Options = ({
                       fullWidth: true,
                     }}
                     inputProps={{
-                      type: "number",
+                      type: "text",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          FaxNumber: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -387,6 +452,11 @@ const Options = ({
                     }}
                     inputProps={{
                       type: "email",
+                      onChange: e =>
+                        setFormState({
+                          ...formState,
+                          EMailAddress: e.target.value,
+                        }),
                     }}
                   />
                 </GridItem>
@@ -421,6 +491,11 @@ const Options = ({
               }}
               inputProps={{
                 type: "text",
+                onChange: e =>
+                  setFormState({
+                    ...formState,
+                    GUARDIANFirstName: e.target.value,
+                  }),
               }}
             />
           </GridItem>
@@ -433,6 +508,11 @@ const Options = ({
               }}
               inputProps={{
                 type: "number",
+                onChange: e =>
+                  setFormState({
+                    ...formState,
+                    GUARDIANContactNumber: e.target.value,
+                  }),
               }}
             />
           </GridItem>
@@ -445,6 +525,11 @@ const Options = ({
               }}
               inputProps={{
                 type: "text",
+                onChange: e =>
+                  setFormState({
+                    ...formState,
+                    GUARDIANOtherNames: e.target.value,
+                  }),
               }}
             />
           </GridItem>
@@ -458,6 +543,11 @@ const Options = ({
               inputProps={{
                 multiline: true,
                 rows: 5,
+                onChange: e =>
+                  setFormState({
+                    ...formState,
+                    GUARDIANResidentialAddress: e.target.value,
+                  }),
               }}
             />
           </GridItem>
@@ -496,6 +586,10 @@ const Options = ({
                   color="rose"
                   onClick={() => {
                     handleProgrammeTYPE("Matic Re-write");
+                    setFormState({
+                      ...formState,
+                      ProgrammeType: "Matic Re-write",
+                    });
                   }}
                 >
                   Matic Re-write
@@ -507,6 +601,10 @@ const Options = ({
                   color="rose"
                   onClick={() => {
                     handleProgrammeTYPE("Nated Programmes");
+                    setFormState({
+                      ...formState,
+                      ProgrammeType: "Nated Programmes",
+                    });
                   }}
                 >
                   Nated Programmes
@@ -518,6 +616,10 @@ const Options = ({
                   color="rose"
                   onClick={() => {
                     handleProgrammeTYPE("Semi-Skills");
+                    setFormState({
+                      ...formState,
+                      ProgrammeType: "Semi-Skills",
+                    });
                   }}
                 >
                   Semi-Skills
@@ -529,6 +631,10 @@ const Options = ({
                   color="rose"
                   onClick={() => {
                     handleProgrammeTYPE("Short Programmes");
+                    setFormState({
+                      ...formState,
+                      ProgrammeType: "Short Programmes",
+                    });
                   }}
                 >
                   Short Programmes
@@ -540,6 +646,7 @@ const Options = ({
                   color="rose"
                   onClick={() => {
                     handleProgrammeTYPE("Computers");
+                    setFormState({ ...formState, ProgrammeType: "Computers" });
                   }}
                 >
                   Computers
@@ -596,8 +703,44 @@ const Options = ({
                       },
                     }}
                     showCheckbox={true}
-                    onSelect={handleStateChange}
-                    onRemove={handleStateChange}
+                    onSelect={e => {
+                      setValueOfCourse(calculateMatric(e.length));
+
+                      if (e.length !== 0) {
+                        setFormState({
+                          ...formState,
+                          ProgrammeName: e,
+                          Duration: e[0].durationOf,
+                          SAQAID: e.map(elem => elem.ID),
+                        });
+                      }
+                      if (e.length == 0) {
+                        setFormState({
+                          ...formState,
+                          Duration: "N/A",
+                          SAQAID: "N/A",
+                        });
+                      }
+                    }}
+                    onRemove={e => {
+                      setValueOfCourse(calculateMatric(e.length));
+
+                      if (e.length !== 0) {
+                        setFormState({
+                          ...formState,
+                          ProgrammeName: e,
+                          Duration: e[0].durationOf,
+                          SAQAID: e.map(elem => elem.ID),
+                        });
+                      }
+                      if (e.length == 0) {
+                        setFormState({
+                          ...formState,
+                          Duration: "N/A",
+                          SAQAID: "N/A",
+                        });
+                      }
+                    }}
                   />
                 </div>
               </GridItem>
@@ -609,11 +752,13 @@ const Options = ({
                         <CustomInput
                           labelText="SAQA I.D:"
                           id="pass"
+                          value={9}
                           formControlProps={{
                             fullWidth: true,
                           }}
                           inputProps={{
-                            type: "number",
+                            type: "text",
+                            value: formState.SAQAID,
                           }}
                         />
                       </GridItem>
@@ -632,21 +777,17 @@ const Options = ({
                     </>
                   )}
                   <GridItem xs={12} md={6}>
-                    {duration && (
-                      <CustomInput
-                        labelText="Duration:"
-                        id="pass"
-                        value={duration}
-                        formControlProps={{
-                          fullWidth: true,
-                          value: duration,
-                        }}
-                        inputProps={{
-                          type: "text",
-                          value: duration,
-                        }}
-                      />
-                    )}
+                    <CustomInput
+                      labelText="Duration:"
+                      id="pass"
+                      formControlProps={{
+                        fullWidth: true,
+                      }}
+                      inputProps={{
+                        type: "text",
+                        value: formState.Duration,
+                      }}
+                    />
                   </GridItem>
                 </>
               ) : (
@@ -663,6 +804,12 @@ const Options = ({
                   options={["Part Time", "Full Time"]}
                   isObject={false}
                   singleSelect={true}
+                  onSelect={e =>
+                    setFormState({ ...formState, Attendence: e[0] })
+                  }
+                  onRemove={() =>
+                    setFormState({ ...formState, Attendence: "N/A" })
+                  }
                   style={{
                     searchBox: {
                       border: "none",
@@ -683,6 +830,12 @@ const Options = ({
                   options={["Yes", "No"]}
                   isObject={false}
                   singleSelect={true}
+                  onSelect={e =>
+                    setFormState({ ...formState, EveningLessions: e[0] })
+                  }
+                  onRemove={() =>
+                    setFormState({ ...formState, EveningLessions: "N/A" })
+                  }
                   style={{
                     searchBox: {
                       border: "none",
@@ -716,16 +869,58 @@ const Options = ({
 
 export default function SectionLogin() {
   const classes = useStyles();
-  const classes2 = useStyles2();
+  const [step, setStep] = React.useState(1);
   const [ID, setID] = React.useState("");
   const [programme, setProgramme] = React.useState("");
-  const [step, setStep] = React.useState(1);
+  const [valueOfCourse, setValueOfCourse] = React.useState(0);
 
-  const handleTYPE = typeID => {
-    setID(typeID);
-  };
-  const handleProgrammeTYPE = typeID => {
-    setProgramme(typeID);
+  const [formState, setFormState] = React.useState({
+    IDNumber: "N/A",
+    PassportNumber: "N/A",
+    BirthDate: "N/A",
+    MaritalStatus: "N/A",
+    Gender: "N/A",
+    LanguageCode: "N/A",
+    LearnerTitle: "N/A",
+    DisabilityStatusCode: "N/A",
+    FirstName: "N/A",
+    OtherNames: "N/A",
+    LearnerHomeAddress: "N/A",
+    HomePostalCode: "N/A",
+    LearnerPostalAddress: "N/A",
+    PostalCode: "N/A",
+    PhoneNumber: "N/A",
+    ProvinceCode: "N/A",
+    CellNumber: "N/A",
+    FaxNumber: "N/A",
+    EMailAddress: "N/A",
+    GUARDIANFirstName: "N/A",
+    GUARDIANContactNumber: "N/A",
+    GUARDIANOtherNames: "N/A",
+    GUARDIANResidentialAddress: "N/A",
+    ProgrammeType: "N/A",
+    ProgrammeName: "N/A",
+    SAQAID: "N/A",
+    Credits: "N/A",
+    Duration: "N/A",
+    Attendence: "N/A",
+    EveningLessions: "N/A",
+  });
+
+  const SUBMITFORMDATA = async e => {
+    e.preventDefault();
+
+    await fetch("/api/ClientRegistration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...formState }),
+    })
+      .then(() => console.log("done"))
+      .catch(err => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -734,7 +929,7 @@ export default function SectionLogin() {
         <GridContainer justify="center">
           <GridItem xs={12}>
             <Card>
-              <form className={classes.form}>
+              <form className={classes.form} onSubmit={SUBMITFORMDATA}>
                 <CardHeader color="info" className={classes.cardHeader}>
                   <h4>Register</h4>
                 </CardHeader>
@@ -742,17 +937,20 @@ export default function SectionLogin() {
                 <CardBody>
                   <Options
                     step={step}
-                    ID={ID}
-                    handleTYPE={handleTYPE}
-                    classes={classes2}
                     setStep={setStep}
+                    ID={ID}
+                    setID={setID}
                     programme={programme}
-                    handleProgrammeTYPE={handleProgrammeTYPE}
+                    setProgramme={setProgramme}
+                    valueOfCourse={valueOfCourse}
+                    setValueOfCourse={setValueOfCourse}
+                    formState={formState}
+                    setFormState={setFormState}
                   />
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
                   {step === 3 && (
-                    <Button color="info" size="lg">
+                    <Button color="info" size="lg" type="submit">
                       Get started
                     </Button>
                   )}

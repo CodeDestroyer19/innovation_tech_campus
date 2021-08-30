@@ -1,5 +1,5 @@
-function createData(name, value, ID, durationOf) {
-  return { name, value, ID, durationOf };
+function createData(name, value, ID, durationOf, credits) {
+  return { name, value, ID, durationOf, credits };
 }
 
 export const rows = [
@@ -121,7 +121,8 @@ export const rows6 = [
   createData(
     "Mathematics",
     "R450 + REGISTRAION FEE (First month)",
-    "R450 PER MONTH"
+    "R450 PER MONTH",
+    3
   ),
   createData(
     "Math Literacy",
