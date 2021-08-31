@@ -26,6 +26,8 @@ import SectionCarousel from "pages-sections/Components-Sections/SectionCarousel.
 import Meta from "../components/Meta";
 import Link from "next/link";
 import Image from "next/image";
+import { FloatingWhatsApp } from "react-floating-whatsapp-button";
+import "react-floating-whatsapp-button/dist/index.css";
 
 const dashboardRoutes = [];
 
@@ -34,10 +36,23 @@ const useStyles = makeStyles(styles);
 export default function Home(props) {
   const classes = useStyles();
   const { ...rest } = props;
+  const [whatsApp, setWhatsApp] = React.useState(<></>);
+  React.useEffect(() => {
+    setWhatsApp(
+      <FloatingWhatsApp
+        zIndex={99999}
+        phone="+27813800206"
+        popupMessage="Welcome to Innovation Technology Campus, how may we help you?"
+        headerTitle="Innovation Technology Campus"
+        size="48px"
+      />
+    );
+  }, []);
   return (
     <>
       <Meta title="Innovation Tech" />
       <div>
+        {whatsApp}
         <Header
           color="transparent"
           routes={dashboardRoutes}

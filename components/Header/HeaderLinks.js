@@ -10,7 +10,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@material-ui/core/Icon";
 
 // @material-ui/icons
-import { Edit, Info } from "@material-ui/icons";
+import { Edit, Info, Equalizer } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
@@ -42,6 +42,13 @@ export default function HeaderLinks(props) {
         <Link href="/Register">
           <Button color="transparent" className={classes.navLink}>
             <Edit className={classes.icons} /> Register
+          </Button>
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Link href="/Details">
+          <Button color="transparent" className={classes.navLink}>
+            <Equalizer className={classes.icons} /> Details
           </Button>
         </Link>
       </ListItem>

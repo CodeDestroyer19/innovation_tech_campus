@@ -20,16 +20,31 @@ import CustomizedTables from "../components/Tables/CourseTable";
 import Meta from "../components/Meta";
 
 import styles from "styles/jss/nextjs-material-kit/pages/components.js";
+import { FloatingWhatsApp } from "react-floating-whatsapp-button";
+import "react-floating-whatsapp-button/dist/index.css";
 
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
   const classes = useStyles();
   const { ...rest } = props;
+  const [whatsApp, setWhatsApp] = React.useState(<></>);
+  React.useEffect(() => {
+    setWhatsApp(
+      <FloatingWhatsApp
+        zIndex={99999}
+        phone="+27813800206"
+        popupMessage="Welcome to Innovation Technology Campus, how may we help you?"
+        headerTitle="Innovation Technology Campus"
+        size="48px"
+      />
+    );
+  }, []);
   return (
     <>
       <Meta title="Courses" description="" keyWords="" />
       <div>
+        {whatsApp}
         <Header
           brand={
             <div style={{ display: "flex", flexDirection: "row" }}>

@@ -22,7 +22,10 @@ import Image from "next/image";
 
 import styles from "styles/jss/nextjs-material-kit/pages/loginPage.js";
 import Meta from "../components/Meta";
-import dynamic from "next/dynamic";
+import Map from "../components/Maps/Map";
+import { FloatingWhatsApp } from "react-floating-whatsapp-button";
+import "react-floating-whatsapp-button/dist/index.css";
+
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
@@ -32,11 +35,52 @@ export default function LoginPage(props) {
   }, 700);
   const classes = useStyles();
   const { ...rest } = props;
-  const Map = dynamic(() => import("../components/Maps/Map"));
+  const [whatsApp, setWhatsApp] = React.useState(<></>);
+  React.useEffect(() => {
+    setWhatsApp(
+      <FloatingWhatsApp
+        zIndex={99999}
+        phone="+27813800206"
+        popupMessage="Welcome to Innovation Technology Campus, how may we help you?"
+        headerTitle="Innovation Technology Campus"
+        size="48px"
+      />
+    );
+  }, []);
+
+  const [formState, setFormState] = React.useState({
+    Name: "",
+    Email: "",
+    Message: "",
+  });
+
+  const SubMitDATA = async e => {
+    e.preventDefault();
+
+    await fetch("/api/generalEnq/postEnq", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...formState }),
+    })
+      .then(() =>
+        setFormState({
+          Name: "",
+          Email: "",
+          Message: "",
+        })
+      )
+      .catch(err => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <>
       <Meta title="Contact" description="" keyWords="" />
       <div>
+        {whatsApp}
         <Header
           absolute
           color="transparent"
@@ -68,9 +112,9 @@ export default function LoginPage(props) {
         >
           <div className={classes.container} id="MainBody">
             <GridContainer justify="center">
-              <GridItem xs={12} md={5}>
+              <GridItem xs={12} md={5} id="gridItem">
                 <Card className={classes[cardAnimaton]}>
-                  <form className={classes.form}>
+                  <form className={classes.form} onSubmit={SubMitDATA}>
                     <CardHeader color="info" className={classes.cardHeader}>
                       <h4>Send Message</h4>
                     </CardHeader>
@@ -90,6 +134,12 @@ export default function LoginPage(props) {
                               <People className={classes.inputIconsColor} />
                             </InputAdornment>
                           ),
+                          onChange: e =>
+                            setFormState({
+                              ...formState,
+                              Name: e.target.value,
+                            }),
+                          required: true,
                         }}
                       />
                       <CustomInput
@@ -106,6 +156,12 @@ export default function LoginPage(props) {
                               <Email className={classes.inputIconsColor} />
                             </InputAdornment>
                           ),
+                          onChange: e =>
+                            setFormState({
+                              ...formState,
+                              Email: e.target.value,
+                            }),
+                          required: true,
                         }}
                       />
                       <CustomInput
@@ -119,18 +175,24 @@ export default function LoginPage(props) {
                         inputProps={{
                           multiline: true,
                           rows: 5,
+                          onChange: e =>
+                            setFormState({
+                              ...formState,
+                              Message: e.target.value,
+                            }),
+                          required: true,
                         }}
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="info" size="lg">
+                      <Button simple color="info" size="lg" type="submit">
                         Get started
                       </Button>
                     </CardFooter>
                   </form>
                 </Card>
               </GridItem>
-              <GridItem xs={12} md={7}>
+              <GridItem xs={12} md={7} id="gridItem">
                 <Map />
               </GridItem>
             </GridContainer>

@@ -16,6 +16,7 @@ import Datetime from "react-datetime";
 import Multiselect from "multiselect-react-dropdown";
 
 import styles from "styles/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
+import SignPad from "../../components/SignPad/SignPad";
 
 import {
   calculateMatric,
@@ -40,8 +41,6 @@ const Options = ({
   formState,
   setFormState,
 }) => {
-  console.log(formState);
-
   const handleTYPE = typeID => {
     setID(typeID);
   };
@@ -49,6 +48,7 @@ const Options = ({
     setProgramme(typeID);
   };
 
+  console.log(formState.Signture);
   switch (step) {
     case 1:
       return (
@@ -187,7 +187,19 @@ const Options = ({
                   <GridItem xs={12} md={6}>
                     <Multiselect
                       placeholder="Home Language Code"
-                      options={["Pending", "Pending"]}
+                      options={[
+                        "AFR",
+                        "ENG",
+                        "NBL",
+                        "XHO",
+                        "ZUL",
+                        "NSO",
+                        "SOT",
+                        "TSN",
+                        "SSW",
+                        "VEN",
+                        "TSO",
+                      ]}
                       isObject={false}
                       singleSelect={true}
                       onSelect={e =>
@@ -211,7 +223,15 @@ const Options = ({
                 <GridItem xs={12} md={6}>
                   <Multiselect
                     placeholder="Learner Title"
-                    options={["Single", "Married"]}
+                    options={[
+                      "Mr",
+                      "Miss",
+                      "Ms",
+                      "Mrs",
+                      "Doctor",
+                      "Professor",
+                      "Reverend",
+                    ]}
                     isObject={false}
                     singleSelect={true}
                     onSelect={e =>
@@ -389,7 +409,17 @@ const Options = ({
                 <GridItem xs={12} md={6}>
                   <Multiselect
                     placeholder="Province Code"
-                    options={["Single", "Married"]}
+                    options={[
+                      "EC",
+                      "FS",
+                      "GT",
+                      "NL",
+                      "LP",
+                      "MP",
+                      "NC",
+                      "NW",
+                      "WC",
+                    ]}
                     isObject={false}
                     singleSelect={true}
                     onSelect={e =>
@@ -850,6 +880,10 @@ const Options = ({
                   }}
                 />
               </GridItem>
+              <GridItem>
+                <h5>Signature</h5>
+                <SignPad setFormState={setFormState} formState={formState} />
+              </GridItem>
               <GridItem xs={12}>
                 <Button
                   color="rose"
@@ -905,6 +939,7 @@ export default function SectionLogin() {
     Duration: "N/A",
     Attendence: "N/A",
     EveningLessions: "N/A",
+    Signture: "",
   });
 
   const SUBMITFORMDATA = async e => {
@@ -917,7 +952,41 @@ export default function SectionLogin() {
       },
       body: JSON.stringify({ ...formState }),
     })
-      .then(() => console.log("done"))
+      .then(() =>
+        setFormState({
+          IDNumber: "N/A",
+          PassportNumber: "N/A",
+          BirthDate: "N/A",
+          MaritalStatus: "N/A",
+          Gender: "N/A",
+          LanguageCode: "N/A",
+          LearnerTitle: "N/A",
+          DisabilityStatusCode: "N/A",
+          FirstName: "N/A",
+          OtherNames: "N/A",
+          LearnerHomeAddress: "N/A",
+          HomePostalCode: "N/A",
+          LearnerPostalAddress: "N/A",
+          PostalCode: "N/A",
+          PhoneNumber: "N/A",
+          ProvinceCode: "N/A",
+          CellNumber: "N/A",
+          FaxNumber: "N/A",
+          EMailAddress: "N/A",
+          GUARDIANFirstName: "N/A",
+          GUARDIANContactNumber: "N/A",
+          GUARDIANOtherNames: "N/A",
+          GUARDIANResidentialAddress: "N/A",
+          ProgrammeType: "N/A",
+          ProgrammeName: "N/A",
+          SAQAID: "N/A",
+          Credits: "N/A",
+          Duration: "N/A",
+          Attendence: "N/A",
+          EveningLessions: "N/A",
+          Signture: "",
+        })
+      )
       .catch(err => {
         console.log(err.message);
       });
@@ -934,7 +1003,7 @@ export default function SectionLogin() {
                   <h4>Register</h4>
                 </CardHeader>
 
-                <CardBody>
+                <CardBody style={{ padding: "10px" }}>
                   <Options
                     step={step}
                     setStep={setStep}

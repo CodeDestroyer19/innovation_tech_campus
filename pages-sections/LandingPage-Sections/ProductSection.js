@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // @material-ui/icons
-import { Build, Person } from "@material-ui/icons";
+import { Build, Person, CloudDone } from "@material-ui/icons";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
@@ -21,7 +21,7 @@ const useStyles = makeStyles(styles);
 export default function ProductSection() {
   const classes = useStyles();
   return (
-    <div className={classes.section}>
+    <div className={classes.section} id="prodctWork">
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Take your skills to the next level</h2>
@@ -75,20 +75,34 @@ export default function ProductSection() {
             <InfoArea
               title="Umalusi Accredited"
               description={
-                <h5 className={classes.description} style={{ margin: "0px" }}>
-                  We are an Umalusi arredited school with{" "}
-                  {Math.abs(
-                    new Date(
-                      "Fri Aug 27 2012 23:18:35 GMT+0200 (South Africa Standard Time)"
-                    ).getFullYear() -
+                <>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src="/Logo Assets/umalusi.jpg"
+                      style={{ width: "60%", height: "auto" }}
+                    />
+                  </div>
+                  <h5 className={classes.description} style={{ margin: "0px" }}>
+                    We are an Umalusi arredited school with{" "}
+                    {Math.abs(
                       new Date(
-                        "Fri Aug 27 2021 23:18:35 GMT+0200 (South Africa Standard Time)"
-                      ).getFullYear()
-                  )}{" "}
-                  years of expirence and counting. We hope to continue passing
-                  down knowlegde year by year and educate the nation for years
-                  to come!
-                </h5>
+                        "Fri Aug 27 2012 23:18:35 GMT+0200 (South Africa Standard Time)"
+                      ).getFullYear() -
+                        new Date(
+                          "Fri Aug 27 2021 23:18:35 GMT+0200 (South Africa Standard Time)"
+                        ).getFullYear()
+                    )}{" "}
+                    years of expirence and counting. We hope to continue passing
+                    down knowlegde year by year and educate the nation for years
+                    to come!
+                  </h5>
+                </>
               }
               icon={VerifiedUser}
               iconColor="success"
@@ -124,7 +138,96 @@ export default function ProductSection() {
                 </List>
               }
               icon={Person}
-              iconColor="danger"
+              iconColor="info"
+              vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+              title="Dhet Registered"
+              icon={VerifiedUser}
+              description={
+                <>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src="/Logo Assets/dhet.png"
+                      style={{ width: "60%", height: "auto" }}
+                    />
+                  </div>
+                  <h5>
+                    We are registered with the department of higher education
+                    and training. <br />
+                    Registration Number: <b>2020/FE07/001</b>
+                  </h5>
+                </>
+              }
+              iconColor="success"
+              vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+              title="Check Out The Links!"
+              description={
+                <>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Button
+                      color="rose"
+                      href="http://www.qcto.org.za/assets/accredited-skills-development-providers-for-n4%E2%80%93n6---updated-12-february-2021-pdf.pdf"
+                    >
+                      QCTO pdf
+                    </Button>
+                    <Button
+                      color="rose"
+                      href="https://www.umalusi.org.za/docs/misc/2018/April-2019-Examinations-NATED-N1-N3-Engineering-Studies-Green-List.pdf"
+                    >
+                      Umalusi pdf
+                    </Button>
+                  </div>
+                </>
+              }
+              icon={CloudDone}
+              iconColor="info"
+              vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+              title="QCTO Approved"
+              description={
+                <>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src="/Logo Assets/qcto.png"
+                      style={{ width: "60%", height: "auto" }}
+                    />
+                  </div>
+                  <h5>
+                    Programmes pass the quality expectations provided by QCTO
+                    and are accredited by them.
+                  </h5>
+                </>
+              }
+              icon={VerifiedUser}
+              iconColor="success"
               vertical
             />
           </GridItem>

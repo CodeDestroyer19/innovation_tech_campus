@@ -69,7 +69,7 @@ export default function TeamSection() {
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img
-                  src="/img/faces/kendall.jpg"
+                  src="/People/jose.jpg"
                   alt="..."
                   className={imageClasses}
                 />

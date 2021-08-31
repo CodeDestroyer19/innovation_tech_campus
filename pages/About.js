@@ -20,6 +20,8 @@ import Image from "next/image";
 
 import styles from "styles/jss/nextjs-material-kit/pages/profilePage.js";
 import Meta from "../components/Meta";
+import { FloatingWhatsApp } from "react-floating-whatsapp-button";
+import "react-floating-whatsapp-button/dist/index.css";
 
 const useStyles = makeStyles(styles);
 
@@ -32,10 +34,23 @@ export default function ProfilePage(props) {
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+  const [whatsApp, setWhatsApp] = React.useState(<></>);
+  React.useEffect(() => {
+    setWhatsApp(
+      <FloatingWhatsApp
+        zIndex={99999}
+        phone="+27813800206"
+        popupMessage="Welcome to Innovation Technology Campus, how may we help you?"
+        headerTitle="Innovation Technology Campus"
+        size="48px"
+      />
+    );
+  }, []);
   return (
     <>
       <Meta title="About" description="" keyWords="" />
       <div>
+        {whatsApp}
         <Header
           color="transparent"
           brand={
@@ -61,7 +76,7 @@ export default function ProfilePage(props) {
           }}
           {...rest}
         />
-        <Parallax small filter image="/img/profile-bg.jpg" />
+        <Parallax filter image="/Parallex/itcCenter.jpg" />
         <div
           className={classNames(classes.main, classes.mainRaised)}
           id="MainBody"
@@ -99,128 +114,43 @@ export default function ProfilePage(props) {
               </GridContainer>
               <div className={classes.description}>
                 <p>
-                  An artist of considerable range, Chet Faker — the name taken
-                  by Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                  performs and records all of his own music, giving it a warm,
-                  intimate feel with a solid groove structure.{" "}
+                  Innovation Technology Campus is an accredited learning
+                  institution which derives its strength from the demand of the
+                  scarcity of skills in South Africa.
+                </p>
+                <p>
+                  We aim to establish a training Institution of excellence for
+                  the training of selected students in the management and
+                  educational sector to enable them to meet our vision of a
+                  diversified skill sector.
                 </p>
               </div>
-              <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                  <NavPills
-                    alignCenter
-                    color="primary"
-                    tabs={[
-                      {
-                        tabButton: "Studio",
-                        tabIcon: Camera,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-1.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-2.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-5.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-4.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        ),
-                      },
-                      {
-                        tabButton: "Work",
-                        tabIcon: Palette,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/olu-eletu.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/clem-onojeghuo.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/cynthia-del-rio.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/mariya-georgieva.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/clem-onojegaw.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        ),
-                      },
-                      {
-                        tabButton: "Favorite",
-                        tabIcon: Favorite,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/mariya-georgieva.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-3.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src="/img/examples/clem-onojeghuo.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/olu-eletu.jpg"
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src="/img/examples/studio-1.jpg"
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        ),
-                      },
-                    ]}
-                  />
-                </GridItem>
-              </GridContainer>
+              <div className={classes.description}>
+                <h5>
+                  <b>Address:</b>
+                </h5>
+                <p>
+                  INNOVATION TECHNOLOGY CAMPUS, Cnr Botha & Mandela Streets, Old
+                  Witbank News Buiilding Town, Emalahleni, 1035
+                </p>
+              </div>
+              <div className={classes.description}>
+                <h5>
+                  <b>Banking details:</b>
+                </h5>
+                <p>They will come here</p>
+              </div>
+              <div className={classes.description}>
+                <h5>
+                  <b>Contact</b>
+                </h5>
+                <p>
+                  <b>Phone:</b> number comes here
+                </p>
+                <p>
+                  <b>Email:</b> info@innvationtech.co.za
+                </p>
+              </div>
             </div>
           </div>
         </div>

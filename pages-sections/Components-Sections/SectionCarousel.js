@@ -25,10 +25,14 @@ export default function SectionCarousel() {
     autoplay: true,
   };
   return (
-    <div className={classes.section}>
+    <div className={classes.section} style={{ padding: "0px" }}>
       <div className={classes.container}>
         <GridContainer>
-          <GridItem xs={12} className={classes.marginAuto}>
+          <GridItem
+            xs={12}
+            className={classes.marginAuto}
+            style={{ padding: "0px" }}
+          >
             <Card carousel>
               <Carousel {...settings}>
                 <div>

@@ -225,18 +225,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>PROGRAMME</StyledTableCell>
-            <StyledTableCell align="center">NQF Level</StyledTableCell>
-            <StyledTableCell align="center">ID</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              NQF Level
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              ID
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -248,18 +260,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>PROGRAMME</StyledTableCell>
-            <StyledTableCell align="center">NQF Level</StyledTableCell>
-            <StyledTableCell align="center">ID</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              NQF Level
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              ID
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows2.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -271,18 +295,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>SUBJECT NAME</StyledTableCell>
-            <StyledTableCell align="center">TUITION FEE</StyledTableCell>
-            <StyledTableCell align="center">DURATION</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              TUITION FEE
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              DURATION
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows3.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -294,18 +330,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>SUBJECT NAME</StyledTableCell>
-            <StyledTableCell align="center">TUITION FEE</StyledTableCell>
-            <StyledTableCell align="center">DURATION</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              TUITION FEE
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              DURATION
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows4.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -317,18 +365,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>SUBJECT NAME</StyledTableCell>
-            <StyledTableCell align="center">TUITION FEE</StyledTableCell>
-            <StyledTableCell align="center">DURATION</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              TUITION FEE
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              DURATION
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows5.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -340,18 +400,30 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>SUBJECT no.</StyledTableCell>
-            <StyledTableCell align="center">REGISTRATION</StyledTableCell>
-            <StyledTableCell align="center">FEES</StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              REGISTRATION
+            </StyledTableCell>
+            <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+              FEES
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows6.map(row => (
             <StyledTableRow key={row.Subjects}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell
+                component="th"
+                scope="row"
+                style={{ padding: "15px 5px" }}
+              >
                 {row.Subjects}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.NQF_Level}</StyledTableCell>
-              <StyledTableCell align="center">{row.ID}</StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.NQF_Level}
+              </StyledTableCell>
+              <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
+                {row.ID}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

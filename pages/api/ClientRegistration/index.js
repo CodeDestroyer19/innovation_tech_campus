@@ -1,80 +1,49 @@
 import { connectToDatabase } from "../../../utils/mongoDB/mongodb";
 
+const { MAIL_GUN_API_KEY } = process.env;
+const domain = "sparkledigi.com";
+
+var mailgun = require("mailgun-js")({
+  apiKey: MAIL_GUN_API_KEY,
+  domain: domain,
+});
+
 const RegisterStudent = async (req, res) => {
   const { db } = await connectToDatabase();
-  const {
-    IDNumber,
-    PassportNumber,
-    BirthDate,
-    MaritalStatus,
-    Gender,
-    LanguageCode,
-    LearnerTitle,
-    DisabilityStatusCode,
-    FirstName,
-    OtherNames,
-    LearnerHomeAddress,
-    HomePostalCode,
-    LearnerPostalAddress,
-    PostalCode,
-    PhoneNumber,
-    ProvinceCode,
-    CellNumber,
-    FaxNumber,
-    EMailAddress,
-    GUARDIANFirstName,
-    GUARDIANContactNumber,
-    GUARDIANOtherNames,
-    GUARDIANResidentialAddress,
-    ProgrammeType,
-    ProgrammeName,
-    SAQAID,
-    Credits,
-    Duration,
-    Attendence,
-    EveningLessions,
-  } = req.body;
 
   const getelems = new Promise((resolve, reject) => {
     resolve(
       db.collection("registered").insertOne({
-        IDNumber,
-        PassportNumber,
-        BirthDate,
-        MaritalStatus,
-        Gender,
-        LanguageCode,
-        LearnerTitle,
-        DisabilityStatusCode,
-        FirstName,
-        OtherNames,
-        LearnerHomeAddress,
-        HomePostalCode,
-        LearnerPostalAddress,
-        PostalCode,
-        PhoneNumber,
-        ProvinceCode,
-        CellNumber,
-        FaxNumber,
-        EMailAddress,
-        GUARDIANFirstName,
-        GUARDIANContactNumber,
-        GUARDIANOtherNames,
-        GUARDIANResidentialAddress,
-        ProgrammeType,
-        ProgrammeName,
-        SAQAID,
-        Credits,
-        Duration,
-        Attendence,
-        EveningLessions,
+        ...req.body,
+        created: new Date().toISOString(),
       })
     );
   });
 
-  getelems.then(() =>
-    res.status(200).json({ success: true, message: "Registered Successfully" })
-  );
+  getelems.then(() => {
+    var data = {
+      from: "Gabriel<info@innovationtech.co.za>",
+      to: `<${req.body.EMailAddress}>`,
+      subject: "SuccessFully Registered",
+      text: `Hi ${
+        req.body.FirstName
+      }, You Have successfully registered with us for the following programmes:
+        ${req.body.ProgrammeType}
+        ${req.body.ProgrammeName.map(
+          elem => `Name: ${elem.name} | Duration: ${elem.durationOf}`
+        ) }.
+        
+        When making payments, please deposit your fees in the following account:
+        
+        
+
+        `,
+    };
+
+    mailgun.messages().send(data);
+
+    res.status(200).json({ success: true, message: "Registered Successfully" });
+  });
   getelems.catch(err =>
     res.status(400).json({ success: false, message: err.message })
   );
