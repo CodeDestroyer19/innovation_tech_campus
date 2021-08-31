@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SignaturePad from "react-signature-canvas";
-import Image from "next/Image";
 import Button from "components/CustomButtons/Button.js";
 
 class SignPad extends Component {
