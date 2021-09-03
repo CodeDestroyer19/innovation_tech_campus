@@ -27,11 +27,11 @@ const ReturnForm = async (req, res) => {
           Promise.reject();
           res.status(400).json({ success: false, data: null });
 
-          console.log(err);
+          console.log(err.message);
         }
 
-        res.status(200).json({ success: true, data: `${data.FirstName}.pdf` });
         Promise.resolve();
+        res.status(200).json({ success: true, data: `${data.FirstName}.pdf` });
       });
   });
 
