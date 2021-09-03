@@ -48,6 +48,19 @@ export default function WorkSection() {
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
+        <GridItem>
+          <h2 className={classes.title}>Our Location</h2>
+
+          <h4 className={classes.description}>
+            Cnr Botha & Mandela Streets, Old Witbank News Buiilding Town,
+            Emalahleni, 1035
+          </h4>
+          <h2 className={classes.title}>Contact Details</h2>
+          <h4 className={classes.description}>Phone: 013 658 6961</h4>
+          <h4 className={classes.description}>
+            Email: info@innovationtech.co.za
+          </h4>
+        </GridItem>
         <GridItem cs={12} sm={12} md={8}>
           <h2 className={classes.title}>Contact us</h2>
           <h4 className={classes.description}>

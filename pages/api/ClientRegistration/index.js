@@ -29,14 +29,17 @@ const RegisterStudent = async (req, res) => {
         req.body.FirstName
       }, You Have successfully registered with us for the following programmes:
         ${req.body.ProgrammeType}
+        
         ${req.body.ProgrammeName.map(
           elem => `Name: ${elem.name} | Duration: ${elem.durationOf}`
-        ) }.
+        )}.
         
         When making payments, please deposit your fees in the following account:
         
-        
+        School's banking details.  Bank: ABSA.  Account number. 4083185356
+        Name.  Innovation Technology Campus
 
+        Thank you for registering with us!
         `,
     };
 

@@ -130,22 +130,24 @@ export default function ProfilePage(props) {
                   <b>Address:</b>
                 </h5>
                 <p>
-                  INNOVATION TECHNOLOGY CAMPUS, Cnr Botha & Mandela Streets, Old
-                  Witbank News Buiilding Town, Emalahleni, 1035
+                  Cnr Botha & Mandela Streets, Old Witbank News Buiilding Town,
+                  Emalahleni, 1035
                 </p>
               </div>
               <div className={classes.description}>
                 <h5>
                   <b>Banking details:</b>
                 </h5>
-                <p>They will come here</p>
+                <p>Bank: ABSA.</p>
+                <p>Account number. 4083185356</p>
+                <p> Name. Innovation Technology Campus</p>
               </div>
               <div className={classes.description}>
                 <h5>
                   <b>Contact</b>
                 </h5>
                 <p>
-                  <b>Phone:</b> number comes here
+                  <b>Phone:</b> 013 658 6961
                 </p>
                 <p>
                   <b>Email:</b> info@innvationtech.co.za

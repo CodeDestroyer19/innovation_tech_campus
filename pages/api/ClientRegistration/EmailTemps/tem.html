@@ -18,7 +18,7 @@
         background: url("https://www.innovationtech.co.za/Logo%20Assets/itc%20transparent.PNG");
         background-repeat: no-repeat;
         background-size: auto;
-        background-color: #eee;
+        background-color: rgb(255, 255, 255);
         min-height: 100vh;
         max-height: fit-content;
         background-position: center;
@@ -33,8 +33,8 @@
       }
 
       .header {
-        width: 100%;
-        height: 125px;
+        min-width: 100%;
+        height: 250px;
         display: flex;
         align-items: center;
       }
@@ -42,6 +42,7 @@
       .headerImg {
         width: 100%;
         height: auto;
+        margin: auto;
       }
 
       .info {
@@ -66,8 +67,8 @@
 
       .table thead th {
         background-color: rgb(170, 170, 170);
-        width: fit-content;
-        padding: 8px;
+        width: 20%;
+        padding: 4px;
       }
 
       .table thead td {
@@ -77,12 +78,14 @@
   </head>
   <body class="body">
     <div class="container">
-      <header class="header">
-        <img
-          class="headerImg"
-          src="https://www.innovationtech.co.za/Logo%20Assets/itcLetterHead.png"
-        />
-      </header>
+      <div id="pageHeader-first">
+        <header class="header">
+          <img
+            class="headerImg"
+            src="https://www.innovationtech.co.za/Logo%20Assets/itcLetterHead.png"
+          />
+        </header>
+      </div>
       <div class="info">
         <div style="width: fit-content; margin: auto">
           <span>
@@ -109,109 +112,122 @@
 
           <thead>
             <th>Learner National ID Number:</th>
-            <td>Hi</td>
+            <td style="width: 40%">Hi</td>
             <th>Learner Birth Date:</th>
-            <td>oi</td>
+            <td style="width: 40%">oi</td>
           </thead>
           <thead>
             <th>Passport Number</th>
-            <td>Hi</td>
+            <td style="width: 40%">Hi</td>
             <th>Marital Status</th>
-            <td>oi</td>
+            <td style="width: 40%">oi</td>
           </thead>
           <thead>
             <th>Home Language Code:</th>
-            <td>Hi</td>
+            <td style="width: 40%">Hi</td>
             <th>Gender</th>
-            <td>oi</td>
+            <td style="width: 40%">oi</td>
           </thead>
           <thead>
             <th>Disability Status Code:</th>
-            <td>Hi</td>
+            <td style="width: 40%">Hi</td>
             <th>Learner Title:</th>
-            <td>oi</td>
-          </thead>
-          <thead>
-            <th>First Name</th>
-            <td>Hi</td>
-
-            <th>Other Names</th>
-            <td>Hi</td>
-          </thead>
-          <thead>
-            <th>Learner Home Address:</th>
-            <td>Hi</td>
-            <th>Postal Code:</th>
-            <td>Hi</td>
-          </thead>
-          <thead>
-            <th>Learner Postal Address:</th>
-            <td>Hi</td>
-            <th>Postal Code:</th>
-            <td>Hi</td>
-          </thead>
-          <thead>
-            <th>Learner Phone Number:</th>
-            <td>Hi</td>
-            <th>Province Code:</th>
-            <td>Hi</td>
-          </thead>
-          <thead>
-            <th>Learner Cell Number:</th>
-            <td>Hi</td>
-            <th>Learner Fax Number:</th>
-            <td>Hi</td>
+            <td style="width: 40%">oi</td>
           </thead>
         </table>
         <table class="table">
           <thead>
-            <th style="width: 100%">Learner E-Mail Address:</th>
-            <td style="width: 100%">Hi</td>
+            <th>First Name</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Other Names</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Learner Home Address:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Postal Code:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Learner Postal Address:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Postal Code:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Learner Phone Number:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Province Code:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Learner Cell Number:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+          <thead>
+            <th>Learner Fax Number:</th>
+            <td style="width: 40%">Hi</td>
           </thead>
         </table>
+        <table class="table">
+          <thead>
+            <th>Learner E-Mail Address:</th>
+            <td style="width: 40%">Hi</td>
+          </thead>
+        </table>
+
         <table class="table">
           <span>
             <h3 class="h4Heading">2. PARENT/GUARDIAN DETAILS</h3>
           </span>
           <thead>
-            <th style="width: 100%">First Name</th>
-            <td style="width: 100%">Hi</td>
+            <th>First Name</th>
+            <td style="width: 40%">Hi</td>
           </thead>
           <thead>
-            <th style="width: 100%">Other Names</th>
-            <td style="width: 100%">Hi</td>
+            <th>Other Names</th>
+            <td style="width: 40%">Hi</td>
           </thead>
           <thead>
-            <th style="width: 100%">Residential Address</th>
-            <td style="width: 100%">Hi</td>
+            <th>Residential Address</th>
+            <td style="width: 40%">Hi</td>
           </thead>
           <thead>
-            <th style="width: 100%">Contact Details</th>
-            <td style="width: 100%">Hi</td>
+            <th>Contact Details</th>
+            <td style="width: 40%">Hi</td>
           </thead>
         </table>
+
         <table class="table">
           <span>
             <h3 class="h4Heading">3. PROGRAMME DETAILS</h3>
           </span>
 
           <thead>
-            <th style="width: 100%">Programme Name</th>
-            <td style="width: 100%">Hi</td>
-            <th style="width: 100%">Attendence</th>
-            <td style="width: 100%">Hi</td>
+            <th>Programme Name</th>
+            <td style="width: 40%">Hi</td>
+            <th>Attendence</th>
+            <td style="width: 40%">Hi</td>
           </thead>
           <thead>
-            <th style="width: 100%">SAQA I.D:</th>
-            <td style="width: 100%">Hi</td>
-            <th style="width: 100%">Credits:</th>
-            <td style="width: 100%">Hi</td>
+            <th>SAQA I.D:</th>
+            <td style="width: 40%">Hi</td>
+            <th>Credits:</th>
+            <td style="width: 40%">Hi</td>
           </thead>
           <thead>
-            <th style="width: 100%">Evening:</th>
-            <td style="width: 100%">Hi</td>
-            <th style="width: 100%">Duration:</th>
-            <td style="width: 100%">Hi</td>
+            <th>Evening:</th>
+            <td style="width: 40%">Hi</td>
+            <th>Duration:</th>
+            <td style="width: 40%">Hi</td>
           </thead>
         </table>
         <div>

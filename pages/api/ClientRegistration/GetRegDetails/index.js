@@ -4,6 +4,7 @@ const GetRegDetails = async (req, res) => {
   const { db } = await connectToDatabase();
   const { ID } = req.body;
 
+  console.log(ID);
   const getelems = new Promise((resolve, reject) => {
     resolve(
       db.collection("registered").findOne({

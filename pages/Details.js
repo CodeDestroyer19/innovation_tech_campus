@@ -11,17 +11,21 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import classNames from "classnames";
 import Image from "next/image";
 import CollapsibleTable from "../components/Tables/DetailsTable";
-import { IconButton } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
+import { CircularProgress, IconButton } from "@material-ui/core";
+import { Search, TramRounded } from "@material-ui/icons";
+import Button from "components/CustomButtons/Button";
+import { saveAs } from "file-saver";
 
 const useStyles = makeStyles(styles);
 const Details = props => {
   const classes = useStyles();
   const [detailsOf, setDetailsOf] = React.useState([]);
   const [IDNumber, setIDNumber] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   const { ...rest } = props;
 
   const onSearch = async () => {
+    console.log(IDNumber);
     const resolution = await fetch("/api/ClientRegistration/GetRegDetails", {
       method: "POST",
       body: JSON.stringify({
@@ -95,7 +99,7 @@ const Details = props => {
                             <Search className={classes.inputIconsColor} />
                           </IconButton>
                         ),
-                        //   required: true,
+                        required: true,
                       }}
                     />
                   </div>
@@ -122,7 +126,50 @@ const Details = props => {
               <br></br>
             </div>
           ) : (
-            <CollapsibleTable detailsOf={detailsOf} />
+            <>
+              <CollapsibleTable detailsOf={detailsOf} />
+              <div>
+                <Button
+                  color="rose"
+                  onClick={async () => {
+                    setLoading(true);
+                    await fetch("/api/ClientRegistration/ReturnForm", {
+                      method: "POST",
+                      body: JSON.stringify({ id: IDNumber }),
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    })
+                      .then(pdf => pdf.json())
+                      .then(myBlob => {
+                        console.log(window.origin + "/" + myBlob.data);
+                        saveAs(
+                          window.origin + "/" + myBlob.data,
+                          `${detailsOf[0].FirstName}.pdf`
+                        );
+                        setLoading(false);
+                      });
+                  }}
+                >
+                  {loading === false ? (
+                    "Download PDF Form"
+                  ) : (
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        displa: "flex",
+                      }}
+                    >
+                      <CircularProgress
+                        color="inherit"
+                        style={{ margin: "auto" }}
+                      />
+                    </div>
+                  )}
+                </Button>
+              </div>
+            </>
           )}
         </div>
       </div>

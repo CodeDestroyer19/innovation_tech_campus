@@ -1,4 +1,38 @@
-const confirmEmail = () => {
+const confirmEmail = data => {
+  const {
+    IDNumber,
+    PassportNumber,
+    BirthDate,
+    MaritalStatus,
+    Gender,
+    LanguageCode,
+    LearnerTitle,
+    DisabilityStatusCode,
+    FirstName,
+    OtherNames,
+    LearnerHomeAddress,
+    HomePostalCode,
+    LearnerPostalAddress,
+    PostalCode,
+    PhoneNumber,
+    ProvinceCode,
+    CellNumber,
+    FaxNumber,
+    EMailAddress,
+    GUARDIANFirstName,
+    GUARDIANContactNumber,
+    GUARDIANOtherNames,
+    GUARDIANResidentialAddress,
+    ProgrammeType,
+    ProgrammeName,
+    SAQAID,
+    Credits,
+    Duration,
+    Attendence,
+    EveningLessions,
+    Signture,
+  } = data;
+
   const email = `<!DOCTYPE html><html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -34,14 +68,15 @@ const confirmEmail = () => {
   
         .header {
           width: 100%;
-          height: 125px;
+          height: 175px;
           display: flex;
           align-items: center;
         }
   
         .headerImg {
-          width: 100%;
+          width: 50%;
           height: auto;
+          margin: auto;
         }
   
         .info {
@@ -109,64 +144,63 @@ const confirmEmail = () => {
   
             <thead>
               <th>Learner National ID Number:</th>
-              <td>Hi</td>
+              <td>${IDNumber}</td>
               <th>Learner Birth Date:</th>
-              <td>oi</td>
+              <td>${BirthDate}</td>
             </thead>
             <thead>
               <th>Passport Number</th>
-              <td>Hi</td>
+              <td>${PassportNumber}</td>
               <th>Marital Status</th>
-              <td>oi</td>
+              <td>${MaritalStatus}</td>
             </thead>
             <thead>
               <th>Home Language Code:</th>
-              <td>Hi</td>
+              <td>${LanguageCode}</td>
               <th>Gender</th>
-              <td>oi</td>
+              <td>${Gender}</td>
             </thead>
             <thead>
               <th>Disability Status Code:</th>
-              <td>Hi</td>
+              <td>${DisabilityStatusCode}</td>
               <th>Learner Title:</th>
-              <td>oi</td>
+              <td>${LearnerTitle}</td>
             </thead>
             <thead>
               <th>First Name</th>
-              <td>Hi</td>
-  
+              <td>${FirstName}</td>
               <th>Other Names</th>
-              <td>Hi</td>
+              <td>${OtherNames}</td>
             </thead>
             <thead>
               <th>Learner Home Address:</th>
-              <td>Hi</td>
+              <td>${LearnerHomeAddress}</td>
               <th>Postal Code:</th>
-              <td>Hi</td>
+              <td>${HomePostalCode}</td>
             </thead>
             <thead>
               <th>Learner Postal Address:</th>
-              <td>Hi</td>
+              <td>${LearnerPostalAddress}</td>
               <th>Postal Code:</th>
-              <td>Hi</td>
+              <td>${PostalCode}</td>
             </thead>
             <thead>
               <th>Learner Phone Number:</th>
-              <td>Hi</td>
+              <td>${PhoneNumber}</td>
               <th>Province Code:</th>
-              <td>Hi</td>
+              <td>${ProvinceCode}</td>
             </thead>
             <thead>
               <th>Learner Cell Number:</th>
-              <td>Hi</td>
+              <td>${CellNumber}</td>
               <th>Learner Fax Number:</th>
-              <td>Hi</td>
+              <td>${FaxNumber}</td>
             </thead>
           </table>
           <table class="table">
             <thead>
               <th style="width: 100%">Learner E-Mail Address:</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${EMailAddress}</td>
             </thead>
           </table>
           <table class="table">
@@ -175,19 +209,19 @@ const confirmEmail = () => {
             </span>
             <thead>
               <th style="width: 100%">First Name</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${GUARDIANFirstName}</td>
             </thead>
             <thead>
               <th style="width: 100%">Other Names</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${GUARDIANOtherNames}</td>
             </thead>
             <thead>
               <th style="width: 100%">Residential Address</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${GUARDIANResidentialAddress}</td>
             </thead>
             <thead>
               <th style="width: 100%">Contact Details</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${GUARDIANContactNumber}</td>
             </thead>
           </table>
           <table class="table">
@@ -197,21 +231,29 @@ const confirmEmail = () => {
   
             <thead>
               <th style="width: 100%">Programme Name</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%; display: flex, flex-wrap: wrap">${ProgrammeName.map(
+                elem => `<span style={{width: '100%}}>${elem.name}</span>`
+              )}</td>
               <th style="width: 100%">Attendence</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${Attendence}</td>
             </thead>
             <thead>
               <th style="width: 100%">SAQA I.D:</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%; display: flex, flex-wrap: wrap">${
+                ProgrammeType === "Nated Programmes"
+                  ? ProgrammeName.map(
+                      elem => `<span style={{width: '100%}}>${elem.ID}</span>`
+                    )
+                  : "N/A"
+              }</td>
               <th style="width: 100%">Credits:</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${Credits}</td>
             </thead>
             <thead>
               <th style="width: 100%">Evening:</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${EveningLessions}</td>
               <th style="width: 100%">Duration:</th>
-              <td style="width: 100%">Hi</td>
+              <td style="width: 100%">${Duration}</td>
             </thead>
           </table>
           <div>
@@ -245,7 +287,7 @@ const confirmEmail = () => {
             </p>
             <div style="display: flex">
               <p style="padding-right: 20px">Learner Signature:</p>
-              <img style="width: 350px; height: auto" src='${Signature}'/>
+              <img style="width: 350px; height: auto" src='${Signture}'/>
             </div>
           </div>
         </div>
