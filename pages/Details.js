@@ -131,6 +131,7 @@ const Details = props => {
               <div>
                 <Button
                   color="rose"
+                  style={{ padding: loading ? "0px" : "8px", display: "flex" }}
                   onClick={async () => {
                     setLoading(true);
                     await fetch("/api/ClientRegistration/ReturnForm", {

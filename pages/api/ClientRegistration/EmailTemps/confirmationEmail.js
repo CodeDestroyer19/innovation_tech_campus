@@ -49,28 +49,34 @@ const confirmEmail = data => {
     .body {
       width: 100%;
       margin: auto;
-      background: url("https://www.innovationtech.co.za/Logo%20Assets/itc%20transparent.PNG");
-      background-repeat: no-repeat;
-      background-size: auto;
-      background-color: rgb(255, 255, 255);
-      min-height: 100vh;
-      max-height: fit-content;
-      background-position: center;
+      height: fit-content;
       display: flex;
       justify-content: center;
     }
-
+    
     .container {
       background-color: #ffffffd7;
       width: 100%;
       min-height: 100vh;
     }
-
-    .header {
-      min-width: 100%;
-      height: 250px;
+    
+    .watermark{
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-color: rgb(255, 255, 255);
+      background-position: center;
+      background: url("https://www.innovationtech.co.za/Logo%20Assets/itc%20transparent.PNG");
+      width: 100%;
+      height: fit-content;
       display: flex;
       justify-content: center;
+    }
+
+    .header {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      padding: 0px 20px
     }
 
     .headerImg {
@@ -108,19 +114,25 @@ const confirmEmail = data => {
     .table thead td {
       background-color: #eee;
       width: 70%;
+      font-size: 14px !important
+    }
+
+    #pageFooter{
+      height: 75 !important
     }
       </style>
     </head>
     <body class="body">
       <div class="container">
-      <div id="pageHeader">
+      
       <header class="header">
         <img
           class="headerImg"
           src="https://www.innovationtech.co.za/Logo%20Assets/itcLetterHead.png"
         />
       </header>
-    </div>
+   
+      <div class='waterMark'>
         <div class="info">
           <div style="width: fit-content; margin: auto">
             <span>
@@ -217,17 +229,17 @@ const confirmEmail = data => {
               <th>Learner Fax Number:</th>
               <td>${FaxNumber}</td>
             </thead>
-          </table>
-          <table class="table">
             <thead>
-              <th >Learner E-Mail Address:</th>
-              <td >${EMailAddress}</td>
-            </thead>
+            <th >Learner E-Mail Address:</th>
+            <td >${EMailAddress}</td>
+          </thead>
           </table>
+          
           <div id="pageFooter"></div>
+        </div>
 
-          <table class="table">
-            <span>
+          <table class="table" >
+            <span style="padding-top: 30px">
               <h3 class="h4Heading">2. PARENT/GUARDIAN DETAILS</h3>
             </span>
             <thead>
@@ -260,10 +272,10 @@ const confirmEmail = data => {
             </thead>
             <thead>
               <th >Attendence</th>
-              <td style="width: 100%">${Attendence}</td>
+              <td>${Attendence}</td>
             </thead>
             <thead>
-              <th style="width: 100%">SAQA I.D:</th>
+              <th>SAQA I.D:</th>
               <td style="width: 100%; display: flex, flex-wrap: wrap">${
                 ProgrammeType === "Nated Programmes"
                   ? ProgrammeName.map(
@@ -311,13 +323,21 @@ const confirmEmail = data => {
                 Discipline at the college has to be adhered to at all times.
               </li>
             </ul>
-            <p>
-              I have read, understood and accepted all the conditions stipulated
-              above
-            </p>
-            <div style="display: flex">
-              <p style="padding-right: 20px">Learner Signature:</p>
-              <img style="width: 350px; height: auto" src='${Signture}'/>
+            <div style="width: 90%; margin: auto">
+              <p>
+                I have read, understood and accepted all the conditions stipulated
+                above
+              </p>
+              <table style="width: 100%">
+              <thead>
+                <th>
+                  <p style="padding-right: 20px">Learner Signature:</p>
+                </th>
+                <td>
+                  <img style="width: 250px; height: auto; border-bottom: 2px solid black" src='${Signture}'/>
+                </td?
+                </thead>
+              </table>
             </div>
           </div>
         </div>
