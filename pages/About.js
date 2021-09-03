@@ -76,7 +76,7 @@ export default function ProfilePage(props) {
           }}
           {...rest}
         />
-        <Parallax filter image="/Parallex/itcCenter.jpg" />
+        <Parallax filter image="/Parallex/itcCenter.JPG" />
         <div
           className={classNames(classes.main, classes.mainRaised)}
           id="MainBody"
