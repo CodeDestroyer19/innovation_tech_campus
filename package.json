@@ -41,6 +41,7 @@
     "nouislider": "15.1.0",
     "path": "0.12.7",
     "pdfkit": "^0.12.3",
+    "phantomjs": "^2.1.7",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-datetime": "3.0.4",

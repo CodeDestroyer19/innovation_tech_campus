@@ -12,7 +12,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import CollapsibleTable from "../components/Tables/DetailsTable";
 import { CircularProgress, IconButton } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
+import { CloudDownload, Search } from "@material-ui/icons";
 import Button from "components/CustomButtons/Button";
 
 const useStyles = makeStyles(styles);
@@ -126,13 +126,9 @@ const Details = props => {
           ) : (
             <>
               <CollapsibleTable detailsOf={detailsOf} />
-              <div>
-                <Button
-                  color="rose"
-                  style={{
-                    padding: loading ? "0px" : "8px",
-                    display: "flex",
-                  }}
+              <div style={{ padding: "8px", display: "flex" }}>
+                <IconButton
+                  color="inherit"
                   onClick={async () => {
                     setLoading(true);
                     await fetch("/api/ClientRegistration/ReturnForm", {
@@ -147,23 +143,21 @@ const Details = props => {
                   }}
                 >
                   {loading === false ? (
-                    "Download PDF Form"
+                    <CloudDownload />
                   ) : (
                     <div
                       style={{
-                        width: "300px",
-                        height: "200px",
                         display: "flex",
                       }}
                     >
                       <CircularProgress
                         color="inherit"
-                        size="3rem"
                         style={{ margin: "auto" }}
                       />
                     </div>
                   )}
-                </Button>
+                </IconButton>
+                <h5 style={{ margin: "auto 10px" }}>Download PDF form</h5>
               </div>
             </>
           )}
