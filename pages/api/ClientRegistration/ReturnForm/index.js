@@ -1,9 +1,9 @@
 const pdf = require("html-pdf");
 import confirmEmail from "../EmailTemps/confirmationEmail";
-import fs from "fs";
 var phantomjs = require("phantomjs");
 
 const ReturnForm = async (req, res) => {
+  console.log(phantomjs.path);
   return new Promise((resolve, reject) => {
     pdf
       .create(confirmEmail(req.body), {
