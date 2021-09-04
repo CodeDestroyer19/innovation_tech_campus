@@ -14,35 +14,9 @@ const GetRegDetails = async (req, res) => {
   });
 
   getelems.then(data => {
-    const {
-      IDNumber,
-      PassportNumber,
-      FirstName,
-      OtherNames,
-      PhoneNumber,
-      EMailAddress,
-      ProgrammeName,
-      Signture,
-      created,
-      ProgrammeType,
-    } = data;
-
     res.status(200).json({
       success: true,
-      result: [
-        {
-          IDNumber,
-          PassportNumber,
-          FirstName,
-          OtherNames,
-          PhoneNumber,
-          EMailAddress,
-          ProgrammeName,
-          Signture,
-          created,
-          ProgrammeType,
-        },
-      ],
+      result: [data],
     });
   });
   getelems.catch(err =>

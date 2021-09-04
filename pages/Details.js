@@ -12,7 +12,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import CollapsibleTable from "../components/Tables/DetailsTable";
 import { CircularProgress, IconButton } from "@material-ui/core";
-import { Search, TramRounded } from "@material-ui/icons";
+import { Search } from "@material-ui/icons";
 import Button from "components/CustomButtons/Button";
 import { saveAs } from "file-saver";
 
@@ -25,7 +25,6 @@ const Details = props => {
   const { ...rest } = props;
 
   const onSearch = async () => {
-    console.log(IDNumber);
     const resolution = await fetch("/api/ClientRegistration/GetRegDetails", {
       method: "POST",
       body: JSON.stringify({
@@ -131,12 +130,15 @@ const Details = props => {
               <div>
                 <Button
                   color="rose"
-                  style={{ padding: loading ? "0px" : "8px", display: "flex" }}
+                  style={{
+                    padding: loading ? "0px" : "8px",
+                    display: "flex",
+                  }}
                   onClick={async () => {
                     setLoading(true);
                     await fetch("/api/ClientRegistration/ReturnForm", {
                       method: "POST",
-                      body: JSON.stringify({ id: IDNumber }),
+                      body: JSON.stringify({ ...detailsOf[0] }),
                       headers: {
                         "Content-Type": "application/json",
                       },
@@ -157,13 +159,14 @@ const Details = props => {
                   ) : (
                     <div
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        displa: "flex",
+                        width: "300px",
+                        height: "200px",
+                        display: "flex",
                       }}
                     >
                       <CircularProgress
                         color="inherit"
+                        size="3rem"
                         style={{ margin: "auto" }}
                       />
                     </div>
