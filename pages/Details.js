@@ -14,7 +14,6 @@ import CollapsibleTable from "../components/Tables/DetailsTable";
 import { CircularProgress, IconButton } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import Button from "components/CustomButtons/Button";
-import { saveAs } from "file-saver";
 
 const useStyles = makeStyles(styles);
 const Details = props => {
@@ -129,30 +128,23 @@ const Details = props => {
               <CollapsibleTable detailsOf={detailsOf} />
               <div>
                 <Button
-                  color="rose"
-                  style={{
-                    padding: loading ? "0px" : "8px",
-                    display: "flex",
-                  }}
-                  onClick={async () => {
-                    setLoading(true);
-                    await fetch("/api/ClientRegistration/ReturnForm", {
-                      method: "POST",
-                      body: JSON.stringify({ ...detailsOf[0] }),
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    })
-                      .then(pdf => pdf.json())
-                      .then(myBlob => {
-                        console.log(window.origin + "/" + myBlob.data);
-                        saveAs(
-                          window.origin + "/" + myBlob.data,
-                          `${detailsOf[0].FirstName}.pdf`
-                        );
-                        setLoading(false);
-                      });
-                  }}
+                    color="rose"
+                    style={{
+                      padding: loading ? "0px" : "8px",
+                      display: "flex",
+                    }}
+                    onClick={async () => {
+                      setLoading( true );
+                      await fetch( "/api/ClientRegistration/ReturnForm", {
+                        method: "POST",
+                        body: JSON.stringify( { ...detailsOf[0] } ),
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      } ).then( () => {
+                        setLoading( false );
+                      } );
+                    }
                 >
                   {loading === false ? (
                     "Download PDF Form"

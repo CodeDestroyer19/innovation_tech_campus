@@ -1,24 +1,22 @@
 const pdf = require("html-pdf");
 import confirmEmail from "../EmailTemps/confirmationEmail";
+import fs from "fs";
 
 const ReturnForm = async (req, res) => {
   return new Promise((resolve, reject) => {
-    pdf
-      .create(confirmEmail(req.body), {})
-      .toFile(`./public/${req.body.FirstName}.pdf`, function (err, resolution) {
-        if (err) {
-          res.status(400).json({ success: false, data: null });
+    pdf.create(confirmEmail(req.body), {}).toStream((err, stream) => {
+      if (err) {
+        console.log(err.message);
+        return res.end(`Here is error ======>>>>> ${err.stack}`);
+      }
 
-          console.log(err.message);
-          reject(err);
-        }
-
-        res
-          .status(200)
-          .json({ success: true, data: `${req.body.FirstName}.pdf` });
-
-        return resolve(resolution.filename);
-      });
+      res.setHeader(
+        "Content-disposition",
+        "attachment; filename=" + req.body.FirstName
+      );
+      res.setHeader("Content-type", "application/pdf");
+      stream.pipe(res);
+    });
   });
 };
 
