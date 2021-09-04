@@ -13,7 +13,7 @@ import Image from "next/image";
 import CollapsibleTable from "../components/Tables/DetailsTable";
 import { CircularProgress, IconButton } from "@material-ui/core";
 import { CloudDownload, Search } from "@material-ui/icons";
-import Button from "components/CustomButtons/Button";
+import { saveAs } from "file-saver";
 
 const useStyles = makeStyles(styles);
 const Details = props => {
@@ -131,15 +131,26 @@ const Details = props => {
                   color="inherit"
                   onClick={async () => {
                     setLoading(true);
-                    await fetch("/api/ClientRegistration/ReturnForm", {
-                      method: "POST",
-                      body: JSON.stringify({ ...detailsOf[0] }),
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    }).then(() => {
-                      setLoading(false);
+                    const res = await fetch(
+                      "/api/ClientRegistration/ReturnForm",
+                      {
+                        method: "POST",
+                        body: JSON.stringify({ ...detailsOf[0] }),
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    ).then(data => data.json());
+
+                    const arr = new Uint8Array(res.data.data);
+                    console.log(arr);
+                    const newBlob = new Blob([arr], {
+                      type: "application/pdf",
                     });
+
+                    saveAs(newBlob, detailsOf[0].FirstName);
+
+                    setLoading(false);
                   }}
                 >
                   {loading === false ? (

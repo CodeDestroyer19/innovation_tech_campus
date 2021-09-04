@@ -29,6 +29,7 @@
     "classnames": "2.3.1",
     "file-saver": "^2.0.5",
     "html-pdf": "^3.0.1",
+    "html-pdf-node": "^1.0.7",
     "mailgun-js": "^0.22.0",
     "moment": "2.29.1",
     "mongodb": "^3.6.6",

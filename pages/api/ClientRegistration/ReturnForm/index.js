@@ -1,26 +1,16 @@
-const pdf = require("html-pdf");
+const pdf = require("html-pdf-node");
 import confirmEmail from "../EmailTemps/confirmationEmail";
 var phantomjs = require("phantomjs");
 
 const ReturnForm = async (req, res) => {
-  console.log(phantomjs.path);
   return new Promise((resolve, reject) => {
+    let file = { content: confirmEmail(req.body), name: req.body.FirstName };
     pdf
-      .create(confirmEmail(req.body), {
-        phantomPath: phantomjs.path,
+      .generatePdf(file, { format: "A4" }, (err, result) => {
+        if (err) res.end(err);
       })
-      .toStream((err, stream) => {
-        if (err) {
-          console.log(err.message);
-          return res.end(`Here is error ======>>>>> ${err.stack}`);
-        }
-
-        res.setHeader(
-          "Content-disposition",
-          "attachment; filename=" + req.body.FirstName
-        );
-        res.setHeader("Content-type", "application/pdf");
-        stream.pipe(res);
+      .then(pdfBuffer => {
+        res.status(200).json({ success: true, data: pdfBuffer });
       });
   });
 };

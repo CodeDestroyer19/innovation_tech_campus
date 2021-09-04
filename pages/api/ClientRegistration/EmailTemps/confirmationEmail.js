@@ -112,7 +112,7 @@ const confirmEmail = data => {
     }
 
     .table thead td {
-      background-color: #eee;
+      background-color: lightgray;
       width: 70%;
       font-size: 14px !important
     }
@@ -267,7 +267,7 @@ const confirmEmail = data => {
             <thead>
               <th >Programme Name</th>
               <td style="width: 100%; display: flex, flex-wrap: wrap">${ProgrammeName.map(
-                elem => `<span style={{width: '100%}}>${elem.name}</span>`
+                elem => `<span style="width: 100%">${elem.name}</span>`
               )}</td>
             </thead>
             <thead>
@@ -279,7 +279,7 @@ const confirmEmail = data => {
               <td style="width: 100%; display: flex, flex-wrap: wrap">${
                 ProgrammeType === "Nated Programmes"
                   ? ProgrammeName.map(
-                      elem => `<span style={{width: '100%}}>${elem.ID}</span>`
+                      elem => `<span style="width: 100%">${elem.ID}</span>`
                     )
                   : "N/A"
               }</td>
