@@ -128,23 +128,23 @@ const Details = props => {
               <CollapsibleTable detailsOf={detailsOf} />
               <div>
                 <Button
-                    color="rose"
-                    style={{
-                      padding: loading ? "0px" : "8px",
-                      display: "flex",
-                    }}
-                    onClick={async () => {
-                      setLoading( true );
-                      await fetch( "/api/ClientRegistration/ReturnForm", {
-                        method: "POST",
-                        body: JSON.stringify( { ...detailsOf[0] } ),
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                      } ).then( () => {
-                        setLoading( false );
-                      } );
-                    }
+                  color="rose"
+                  style={{
+                    padding: loading ? "0px" : "8px",
+                    display: "flex",
+                  }}
+                  onClick={async () => {
+                    setLoading(true);
+                    await fetch("/api/ClientRegistration/ReturnForm", {
+                      method: "POST",
+                      body: JSON.stringify({ ...detailsOf[0] }),
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }).then(() => {
+                      setLoading(false);
+                    });
+                  }}
                 >
                   {loading === false ? (
                     "Download PDF Form"
