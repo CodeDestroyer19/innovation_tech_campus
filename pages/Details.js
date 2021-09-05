@@ -23,6 +23,7 @@ const Details = props => {
   const [loading, setLoading] = React.useState(false);
   const { ...rest } = props;
 
+
   const onSearch = async () => {
     const resolution = await fetch("/api/ClientRegistration/GetRegDetails", {
       method: "POST",
