@@ -1,15 +1,21 @@
-const pdf = require("html-pdf-node");
+const pdf = require("html-pdf");
 import confirmEmail from "../EmailTemps/confirmationEmail";
-var phantomjs = require("phantomjs");
+import path from "path";
 
 const ReturnForm = async (req, res) => {
   return new Promise((resolve, reject) => {
     let file = { content: confirmEmail(req.body), name: req.body.FirstName };
     pdf
-      .generatePdf(file, { format: "A4" }, (err, result) => {
-        if (err) res.end(err);
+      .create(confirmEmail(req.body), {
+        format: "A4",
+        phantomPath: path.resolve(
+          process.cwd(),
+          "node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs"
+        ),
       })
-      .then(pdfBuffer => {
+      .toBuffer((err, pdfBuffer) => {
+        if (err) res.end(err);
+
         res.status(200).json({ success: true, data: pdfBuffer });
       });
   });
