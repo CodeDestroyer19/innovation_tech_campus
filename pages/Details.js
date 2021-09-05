@@ -13,7 +13,10 @@ import Image from "next/image";
 import CollapsibleTable from "../components/Tables/DetailsTable";
 import { CircularProgress, IconButton } from "@material-ui/core";
 import { CloudDownload, Search } from "@material-ui/icons";
-import { saveAs } from "file-saver";
+import UserForm from "../components/userForm/ReturnForm";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import ReactDOMServer from "react-dom/server";
 
 const useStyles = makeStyles(styles);
 const Details = props => {
@@ -22,7 +25,6 @@ const Details = props => {
   const [IDNumber, setIDNumber] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const { ...rest } = props;
-
 
   const onSearch = async () => {
     const resolution = await fetch("/api/ClientRegistration/GetRegDetails", {
@@ -126,32 +128,25 @@ const Details = props => {
             </div>
           ) : (
             <>
-              <CollapsibleTable detailsOf={detailsOf} />
+              <UserForm data={detailsOf[0]} />
               <div style={{ padding: "8px", display: "flex" }}>
                 <IconButton
                   color="inherit"
                   onClick={async () => {
                     setLoading(true);
-                    const res = await fetch(
-                      "/api/ClientRegistration/ReturnForm",
-                      {
-                        method: "POST",
-                        body: JSON.stringify({ ...detailsOf[0] }),
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                      }
-                    ).then(data => data.json());
-
-                    const arr = new Uint8Array(res.data.data);
-                    console.log(arr);
-                    const newBlob = new Blob([arr], {
-                      type: "application/pdf",
+                    const pdf = new jsPDF();
+                    pdf.html(window.document.getElementById("bodyform"), {
+                      x: 0,
+                      y: 0,
+                      html2canvas: {
+                        scale: 0.235,
+                        width: 900,
+                      },
+                      callback: function (doc) {
+                        doc.save(detailsOf[0].FirstName + ".pdf");
+                        setLoading(false);
+                      },
                     });
-
-                    saveAs(newBlob, detailsOf[0].FirstName);
-
-                    setLoading(false);
                   }}
                 >
                   {loading === false ? (

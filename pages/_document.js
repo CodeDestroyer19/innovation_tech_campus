@@ -25,6 +25,10 @@ class MyDocument extends Document {
             href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
             rel="stylesheet"
           />
+          <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/polyfills.umd.js"
+          ></script>
         </Head>
         <body>
           <div id="page-transition"></div>
