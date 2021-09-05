@@ -5,6 +5,14 @@ import path from "path";
 const ReturnForm = async (req, res) => {
   return new Promise((resolve, reject) => {
     let file = { content: confirmEmail(req.body), name: req.body.FirstName };
+
+    console.log(
+      path.resolve(
+        process.cwd(),
+        "node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs"
+      )
+    );
+
     pdf
       .create(confirmEmail(req.body), {
         format: "A4",
