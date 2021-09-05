@@ -14,7 +14,7 @@ const ReturnForm = async (req, res) => {
         ),
       })
       .toBuffer((err, pdfBuffer) => {
-        if (err) res.end(err);
+        if (err) throw err;
 
         res.status(200).json({ success: true, data: pdfBuffer });
       });
