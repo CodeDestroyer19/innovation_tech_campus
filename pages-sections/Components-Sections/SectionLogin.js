@@ -14,9 +14,10 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import FormControl from "@material-ui/core/FormControl";
 import Datetime from "react-datetime";
 import Multiselect from "multiselect-react-dropdown";
-
+import { CircularProgress } from "@material-ui/core";
 import styles from "styles/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
 import SignPad from "../../components/SignPad/SignPad";
+import Router from "next/router";
 
 import {
   calculateMatric,
@@ -942,54 +943,66 @@ export default function SectionLogin() {
     Signture: "",
   });
 
+  const [serverRes, setServerRes] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+
   const SUBMITFORMDATA = async e => {
+    setLoading(true);
     e.preventDefault();
 
-    await fetch("/api/ClientRegistration", {
+    const res = await fetch("/api/ClientRegistration", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...formState }),
     })
-      .then(() =>
-        setFormState({
-          IDNumber: "N/A",
-          PassportNumber: "N/A",
-          BirthDate: "N/A",
-          MaritalStatus: "N/A",
-          Gender: "N/A",
-          LanguageCode: "N/A",
-          LearnerTitle: "N/A",
-          DisabilityStatusCode: "N/A",
-          FirstName: "N/A",
-          OtherNames: "N/A",
-          LearnerHomeAddress: "N/A",
-          HomePostalCode: "N/A",
-          LearnerPostalAddress: "N/A",
-          PostalCode: "N/A",
-          PhoneNumber: "N/A",
-          ProvinceCode: "N/A",
-          CellNumber: "N/A",
-          FaxNumber: "N/A",
-          EMailAddress: "N/A",
-          GUARDIANFirstName: "N/A",
-          GUARDIANContactNumber: "N/A",
-          GUARDIANOtherNames: "N/A",
-          GUARDIANResidentialAddress: "N/A",
-          ProgrammeType: "N/A",
-          ProgrammeName: "N/A",
-          SAQAID: "N/A",
-          Credits: "N/A",
-          Duration: "N/A",
-          Attendence: "N/A",
-          EveningLessions: "N/A",
-          Signture: "",
-        })
-      )
+      .then(res => res.json())
       .catch(err => {
         console.log(err.message);
       });
+
+    if (res.success === true) {
+      setFormState({
+        IDNumber: "N/A",
+        PassportNumber: "N/A",
+        BirthDate: "N/A",
+        MaritalStatus: "N/A",
+        Gender: "N/A",
+        LanguageCode: "N/A",
+        LearnerTitle: "N/A",
+        DisabilityStatusCode: "N/A",
+        FirstName: "N/A",
+        OtherNames: "N/A",
+        LearnerHomeAddress: "N/A",
+        HomePostalCode: "N/A",
+        LearnerPostalAddress: "N/A",
+        PostalCode: "N/A",
+        PhoneNumber: "N/A",
+        ProvinceCode: "N/A",
+        CellNumber: "N/A",
+        FaxNumber: "N/A",
+        EMailAddress: "N/A",
+        GUARDIANFirstName: "N/A",
+        GUARDIANContactNumber: "N/A",
+        GUARDIANOtherNames: "N/A",
+        GUARDIANResidentialAddress: "N/A",
+        ProgrammeType: "N/A",
+        ProgrammeName: "N/A",
+        SAQAID: "N/A",
+        Credits: "N/A",
+        Duration: "N/A",
+        Attendence: "N/A",
+        EveningLessions: "N/A",
+        Signture: "",
+      });
+    }
+
+    setLoading(false);
+    setServerRes(res);
+    setTimeout(() => {
+      Router.push("/Details");
+    }, 5000);
   };
 
   return (
@@ -1019,9 +1032,36 @@ export default function SectionLogin() {
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
                   {step === 3 && (
-                    <Button color="info" size="lg" type="submit">
-                      Get started
-                    </Button>
+                    <>
+                      <Button color="info" size="lg" type="submit">
+                        Get started
+                      </Button>
+                      {loading === true && (
+                        <div
+                          style={{
+                            display: "flex",
+                          }}
+                        >
+                          <CircularProgress
+                            style={{ margin: "auto", color: "#44a6c6" }}
+                          />
+                        </div>
+                      )}
+                      {serverRes !== null && (
+                        <div style={{ padding: "8px 16px" }}>
+                          <h4>
+                            <b
+                              style={{
+                                color:
+                                  serverRes.success === false ? "res" : "green",
+                              }}
+                            >
+                              {serverRes.message}
+                            </b>
+                          </h4>
+                        </div>
+                      )}
+                    </>
                   )}
                 </CardFooter>
               </form>
