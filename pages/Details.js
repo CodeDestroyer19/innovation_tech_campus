@@ -15,6 +15,7 @@ import { CircularProgress, IconButton } from "@material-ui/core";
 import { CloudDownload, Search } from "@material-ui/icons";
 import UserForm from "../components/userForm/ReturnForm";
 import { jsPDF } from "jspdf";
+import Footer from "components/Footer/Footer.js";
 
 const useStyles = makeStyles(styles);
 
@@ -271,6 +272,7 @@ const Details = props => {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

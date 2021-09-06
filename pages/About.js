@@ -4,9 +4,6 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -14,7 +11,6 @@ import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 import Image from "next/image";
 
@@ -79,7 +75,7 @@ export default function ProfilePage(props) {
         <Parallax filter image="/Parallex/itcCenter.JPG" />
         <div
           className={classNames(classes.main, classes.mainRaised)}
-          id="MainBody"
+          id="MainBody2"
         >
           <div>
             <div className={classes.container}>
@@ -158,6 +154,7 @@ export default function ProfilePage(props) {
         </div>
         <Footer />
       </div>
+      
     </>
   );
 }
