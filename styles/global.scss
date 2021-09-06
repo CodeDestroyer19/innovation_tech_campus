@@ -55,7 +55,8 @@
 
   #MainBody2 {
     margin: -60px auto auto auto !important;
-    min-width: 95% !important;
+    width: 95% !important;
+    overflow-x: scroll;
   }
 
   #mapLoc {
