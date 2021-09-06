@@ -194,7 +194,7 @@ const Details = props => {
         </Parallax>
         <div
           className={classNames(classes.main, classes.mainRaised)}
-          id="MainBody"
+          id="MainBody2"
         >
           {detailsOf.length === 0 ? (
             dataloading === false ? (
