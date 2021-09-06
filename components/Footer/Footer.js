@@ -2,6 +2,7 @@
 import React from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+import Link from "next/link";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // material-ui core components
@@ -32,46 +33,31 @@ export default function Footer(props) {
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/?ref=njsmk-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Creative Tim
-              </a>
+              <Link href="/Home" className={classes.block}>
+                <div style={{ cursor: "pointer" }} className={classes.block}>
+                  Home
+                </div>
+              </Link>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/presentation?ref=njsmk-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/?ref=njsmk-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/license?ref=njsmk-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Licenses
-              </a>
+              <Link href="/About">
+                <div style={{ cursor: "pointer" }} className={classes.block}>
+                  About us
+                </div>
+              </Link>
             </ListItem>
           </List>
         </div>
         <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
-          <Favorite className={classes.icon} /> by{" "}
+          Created by{" "}
+          <a
+            href="https://www.sparkledigi.com/"
+            style={{ color: "#ff670c" }}
+            target="_blank"
+          >
+            Sparkle Digital
+          </a>{" "}
+          and{" "}
           <a
             href="https://www.creative-tim.com?ref=njsmk-footer"
             className={aClasses}
