@@ -64,7 +64,7 @@ export default function WorkSection() {
         <GridItem cs={12} sm={12} md={8}>
           <h2 className={classes.title}>Contact us</h2>
           <h4 className={classes.description}>
-            Wether you just want to understand something that's unclear,
+            Whether you just want to understand something that's unclear,
             register with us, or refer someone, we will get back to you as soon
             as possible
           </h4>
