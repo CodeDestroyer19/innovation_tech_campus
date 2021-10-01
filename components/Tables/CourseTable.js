@@ -264,7 +264,7 @@ export default function CustomizedTables() {
               NQF Level
             </StyledTableCell>
             <StyledTableCell align="center" style={{ padding: "15px 5px" }}>
-              ID
+              SAQA ID
             </StyledTableCell>
           </TableRow>
         </TableHead>
