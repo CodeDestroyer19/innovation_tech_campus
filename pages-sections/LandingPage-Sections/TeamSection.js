@@ -75,7 +75,7 @@ export default function TeamSection() {
                 />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Joseph Siminyu Baraza
+                Joseph Simiyu Baraza
                 <br />
                 <small className={classes.smallTitle}>Campus Manager</small>
               </h4>
