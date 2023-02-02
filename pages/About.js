@@ -126,8 +126,8 @@ export default function ProfilePage(props) {
                   <b>Address:</b>
                 </h5>
                 <p>
-                  Cnr Botha & Mandela Streets, Old Witbank News Buiilding Town,
-                  Emalahleni, 1035
+                Cnr Arrars and Beatty Streets, Office 1 and 2 Rama Centre
+            Emalahleni, 1035
                 </p>
               </div>
               <div className={classes.description}>
@@ -143,7 +143,7 @@ export default function ProfilePage(props) {
                   <b>Contact</b>
                 </h5>
                 <p>
-                  <b>Phone:</b> 013 658 6961
+                  <b>Phone:</b> 013 656 1033
                 </p>
                 <p>
                   <b>Email:</b> info@innvationtech.co.za

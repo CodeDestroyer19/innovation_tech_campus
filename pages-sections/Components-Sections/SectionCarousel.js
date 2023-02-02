@@ -51,8 +51,8 @@ export default function SectionCarousel() {
                   <div className="slick-caption">
                     <h4>
                       <LocationOn className="slick-icons" />
-                      Cnr Botha & Mandela Streets, Old Witbank News Buiilding
-                      Town, Emalahleni, 1035
+                      Cnr Arrars and Beatty Streets, Office 1 and 2 Rama Centre
+            Emalahleni, 1035
                     </h4>
                   </div>
                 </div>

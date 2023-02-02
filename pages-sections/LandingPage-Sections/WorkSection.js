@@ -52,11 +52,11 @@ export default function WorkSection() {
           <h2 className={classes.title}>Our Location</h2>
 
           <h4 className={classes.description}>
-            Cnr Botha & Mandela Streets, Old Witbank News Buiilding Town,
+            Cnr Arrars and Beatty Streets, Office 1 and 2 Rama Centre
             Emalahleni, 1035
           </h4>
           <h2 className={classes.title}>Contact Details</h2>
-          <h4 className={classes.description}>Phone: 013 658 6961</h4>
+          <h4 className={classes.description}>Phone: 013 656 1033</h4>
           <h4 className={classes.description}>
             Email: info@innovationtech.co.za
           </h4>
