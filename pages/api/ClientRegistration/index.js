@@ -1,7 +1,7 @@
 import { connectToDatabase } from "../../../utils/mongoDB/mongodb";
 
 const { MAIL_GUN_API_KEY } = process.env;
-const domain = "sparkledigi.com";
+const domain = "sandbox35fa9049d92744c7a24a3748c25f6299.mailgun.org";
 
 var mailgun = require("mailgun-js")({
   apiKey: MAIL_GUN_API_KEY,

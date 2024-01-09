@@ -51,7 +51,7 @@ export default function Footer(props) {
         <div className={classes.right}>
           Created by{" "}
           <a
-            href="https://www.sparkledigi.com/"
+            href="https://sparkledigital.vercel.app/"
             style={{ color: "#ff670c" }}
             target="_blank"
           >
